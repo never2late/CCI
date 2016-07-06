@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chapter4\BinarySearchTreeS.cs" />
     <Compile Include="Chapter4\BinaryTreeS.cs" />
     <Compile Include="Chapter4\ChapterFourTester.cs" />
     <Compile Include="Common\Enums.cs" />

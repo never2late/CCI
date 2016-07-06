@@ -12,30 +12,27 @@ namespace Practice
 		{
 			if (q == 0)
 			{
-				var root = GetSampleRoot(0);
+				var tree = GetSampleBST(0);
+				tree.PrintMode = BinaryTreePrintMode.InOrder;
 
-				var binaryTree = new BinaryTreeS<int>(root);
-				binaryTree.PrintMode = BinaryTreePrintMode.InOrder;
-
-				binaryTree.PrintAllOrders();
+				tree.PrintAllOrders();
 			}
 		}
 
-		private BinaryTreeNodeS<int> GetSampleRoot(int t = 0)
+		private BinarySearchTreeS<int> GetSampleBST(int t = 0)
 		{
-			var root = new BinaryTreeNodeS<int>();
+			var tree = new BinarySearchTreeS<int>();
 
 			if (t == 0)
 			{
-				root = new BinaryTreeNodeS<int>(2);
-				var leftNode = new BinaryTreeNodeS<int>(1);
-				var rightNode = new BinaryTreeNodeS<int>(3);
+				tree = new BinarySearchTreeS<int>();
 
-				root.Left = leftNode;
-				root.Right = rightNode;
+				tree.Insert(10);
+				tree.Insert(1);
+				tree.Insert(0);
 			}
 
-			return root;
+			return tree;
 		}
 	}
 }

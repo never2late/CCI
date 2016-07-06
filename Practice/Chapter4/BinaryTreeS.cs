@@ -41,60 +41,69 @@ namespace Practice
 		{
 			PrintLn("===== Printing In Order Start =====");
 
-			PrintInOrder(Root);
+			var sb = new StringBuilder();
+			PrintInOrder(Root, sb);
+			var str = sb.ToString().Substring(0, sb.Length - 2);
+			PrintLn(str);
 
 			PrintLn("===== Printing In Order Finish =====");
 		}
 
-		private void PrintInOrder(BinaryTreeNodeS<T> node)
+		private void PrintInOrder(BinaryTreeNodeS<T> node, StringBuilder sb)
 		{
 			if (node == null) return;
 
-			PrintInOrder(node.Left);
+			PrintInOrder(node.Left, sb);
 
-			PrintLn(node.ToString());
+			sb.Append(node.ToString() + " - ");
 
-			PrintInOrder(node.Right);
+			PrintInOrder(node.Right, sb);
 		}
 
 		public void PrintPreOrder()
 		{
 			PrintLn("===== Printing Pre Order Start =====");
 
-			PrintPreOrder(Root);
+			var sb = new StringBuilder();
+			PrintPreOrder(Root, sb);
+			var str = sb.ToString().Substring(0, sb.Length - 2);
+			PrintLn(str);
 
 			PrintLn("===== Printing Pre Order Finish =====");
 		}
 
-		private void PrintPreOrder(BinaryTreeNodeS<T> node)
+		private void PrintPreOrder(BinaryTreeNodeS<T> node, StringBuilder sb)
 		{
 			if (node == null) return;
 
-			PrintLn(node.ToString());
+			sb.Append(node.ToString() + " - ");
 
-			PrintPreOrder(node.Left);
+			PrintPreOrder(node.Left, sb);
 
-			PrintPreOrder(node.Right);
+			PrintPreOrder(node.Right, sb);
 		}
 
 		public void PrintPostOrder()
 		{
 			PrintLn("===== Printing Post Order Start =====");
 
-			PrintPostOrder(Root);
+			var sb = new StringBuilder();
+			PrintPostOrder(Root, sb);
+			var str = sb.ToString().Substring(0, sb.Length - 2);
+			PrintLn(str);
 
 			PrintLn("===== Printing Post Order Finish =====");
 		}
 
-		private void PrintPostOrder(BinaryTreeNodeS<T> node)
+		private void PrintPostOrder(BinaryTreeNodeS<T> node, StringBuilder sb)
 		{
 			if (node == null) return;
 
-			PrintPostOrder(node.Left);
+			PrintPostOrder(node.Left, sb);
 
-			PrintPostOrder(node.Right);
+			PrintPostOrder(node.Right, sb);
 
-			PrintLn(node.ToString());
+			sb.Append(node.ToString() + " - ");
 		}
 
 		public void PrintAllOrders()
