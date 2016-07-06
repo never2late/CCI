@@ -1,6 +1,0 @@
-c:\users\soohwkim\documents\visual studio 2015\Projects\Practice\Practice\bin\Debug\Practice.exe.config
-c:\users\soohwkim\documents\visual studio 2015\Projects\Practice\Practice\bin\Debug\Practice.exe
-c:\users\soohwkim\documents\visual studio 2015\Projects\Practice\Practice\bin\Debug\Practice.pdb
-c:\users\soohwkim\documents\visual studio 2015\Projects\Practice\Practice\obj\Debug\Practice.csprojResolveAssemblyReference.cache
-c:\users\soohwkim\documents\visual studio 2015\Projects\Practice\Practice\obj\Debug\Practice.exe
-c:\users\soohwkim\documents\visual studio 2015\Projects\Practice\Practice\obj\Debug\Practice.pdb
