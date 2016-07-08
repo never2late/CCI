@@ -8,22 +8,22 @@ namespace Practice
 {
 	public class Program
 	{
-		private static void Test(int chapter, int question = 0)
+		private static void Test(int chapter, int question = 0, int option = 0)
 		{
 			if (chapter == 4)
 			{
 				var tester = new ChapterFourTester();
-				tester.Test(question);
+				tester.Test(question, option);
 			}
 		}
 		
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("================ Program Start ================");
+			Console.WriteLine("================ Program Start ================\n\n");
 			
-			Test(4, 0);
+			Test(4, 0, 3);
 
-			Console.WriteLine("================ Program Finish ================");
+			Console.WriteLine("\n\n================ Program Finish ================");
 
 			Console.ReadKey();
 		}

@@ -55,7 +55,7 @@ namespace Practice
 
 			PrintInOrder(node.Left, sb);
 
-			sb.Append(node.ToString() + " - ");
+			sb.Append(node.ToString() + ", ");
 
 			PrintInOrder(node.Right, sb);
 		}
@@ -76,7 +76,7 @@ namespace Practice
 		{
 			if (node == null) return;
 
-			sb.Append(node.ToString() + " - ");
+			sb.Append(node.ToString() + ", ");
 
 			PrintPreOrder(node.Left, sb);
 
@@ -103,7 +103,7 @@ namespace Practice
 
 			PrintPostOrder(node.Right, sb);
 
-			sb.Append(node.ToString() + " - ");
+			sb.Append(node.ToString() + ", ");
 		}
 
 		public void PrintAllOrders()
