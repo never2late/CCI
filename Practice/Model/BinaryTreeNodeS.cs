@@ -29,6 +29,11 @@ namespace Practice
 			return HasLeftChild() || HasRightChild();
 		}
 
+        public bool HasBothChildren()
+        {
+            return HasLeftChild() && HasRightChild();
+        }
+
 		public int CompareTo(BinaryTreeNodeS<T> node)
 		{
 			if (node.Value is int)
@@ -80,48 +85,45 @@ namespace Practice
 
 			if (compareValue < thisValue)
 			{
-				if (this.Left != null)
-				{
-					return Remove(value, this.Left);
-				}
+                return (Left != null) ? Left.Remove(value, this) : false;
 			}
 			else if (compareValue > thisValue)
 			{
-				if (this.Right != null)
-				{
-					return Remove(value, this.Right);
-				}
+                return (Right != null) ? Right.Remove(value, this) : false;
 			}
 			else
-			{ 
-				
-			}
+			{
+                if (this.HasBothChildren() == true)
+                {
+                    var maxChild = Left.GetMax();
+                    Left.Remove(maxChild.Value, this);
+                    Value = maxChild.Value;
+                }
+                else if (parent.Left == this)
+                {
+                    parent.Left = (Left != null) ? Left : Right;
+                }
+                else if (parent.Right == this)
+                {
+                    parent.Right = (Left != null) ? Left : Right;
+                }
 
-			return false;
+                return true;
+			}
 		}
 
-		public BinaryTreeNodeS<T> GetMax(BinaryTreeNodeS<T> node)
+		public BinaryTreeNodeS<T> GetMax()
 		{
-			if (node == null) return null;
+			if (Right == null) return this;
 
-			if (node.HasRightChild() == true)
-			{
-				return GetMax(node.Right);
-			}
-
-			return node;
+            return Right.GetMax();
 		}
 
-		public BinaryTreeNodeS<T> GetMin(BinaryTreeNodeS<T> node)
+		public BinaryTreeNodeS<T> GetMin()
 		{
-			if (node == null) return null;
+			if (Left == null) return this;
 
-			if (node.HasLeftChild() == true)
-			{
-				return GetMin(node.Left);
-			}
-
-			return node;
+            return Left.GetMin();
 		}
 	}
 }

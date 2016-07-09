@@ -92,10 +92,17 @@ namespace Practice
 				tree.Insert(3);
 				tree.Insert(14);
 				tree.Insert(10);
+                tree.Insert(-1);
+                tree.Insert(-2);
 
-				tree.Remove(0);
+                tree.Remove(15);
+                tree.Remove(14);
+                tree.Remove(10);
+                tree.Remove(3);
+                tree.Remove(2);
+                tree.Remove(1);
 
-				tree.PrintAllOrders();
+                tree.PrintAllOrders();
 			}
 
 			return tree;

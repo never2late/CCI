@@ -63,53 +63,20 @@ namespace Practice
 			else return Contains(cur.Right, node);
 		}
 
-		public void Remove(T value)
+		public bool Remove(T value)
 		{
-			Root.Remove(value, null);
-		}
+            if (Root == null) return false;
+            else if (Root.Value.Equals(value) == true)
+            {
+                var tmpRoot = new BinaryTreeNodeS<T>();
+                tmpRoot.Left = Root;
+                Root.Remove(value, tmpRoot);
+                tmpRoot.Left = null;
 
-		private void Remove(BinaryTreeNodeS<T> toDelete, BinaryTreeNodeS<T> parent)
-		{
-			var compareResult = parent.CompareTo(toDelete);
-			if (compareResult == 0)
-			{
-				if (toDelete.HasLeftChild() == true)
-				{
-					PercolateMaxUp(toDelete);
-				}
-			}
-			else if (compareResult < 0)
-			{
-				Remove(toDelete.Left);
-			}
-			else
-			{
-				Remove(toDelete.Right);
-			}
-		}
+                return true;
+            }
 
-		private void PercolateMaxUp(BinaryTreeNodeS<T> node)
-		{
-			var maxNode = GetMax(node.Left);
-			RemoveMax(node.Left);
-			node.Value = maxNode.Value;
-		}
-
-		public BinaryTreeNodeS<T> RemoveMax(BinaryTreeNodeS<T> node)
-		{
-			if (node == null) return null;
-
-			if (node.HasRightChild() == true)
-			{
-				node.Right = RemoveMax(node.Right);
-				return node;
-			}
-			else if (node.HasLeftChild() == true)
-			{
-				return node.Left;
-			}
-
-			return null;
+			return Root.Remove(value, null);
 		}
 	}
 }
