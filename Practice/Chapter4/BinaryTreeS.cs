@@ -39,14 +39,14 @@ namespace Practice
 
 		public void PrintInOrder()
 		{
-			PrintLn("===== Printing In Order Start =====");
+			PrintLn("===== Printing In-Order Start =====");
 
 			var sb = new StringBuilder();
 			PrintInOrder(Root, sb);
 			var str = sb.ToString().Substring(0, sb.Length - 2);
 			PrintLn(str);
 
-			PrintLn("===== Printing In Order Finish =====");
+			PrintLn("===== Printing In-Order Finish =====");
 		}
 
 		private void PrintInOrder(BinaryTreeNodeS<T> node, StringBuilder sb)
@@ -62,14 +62,14 @@ namespace Practice
 
 		public void PrintPreOrder()
 		{
-			PrintLn("===== Printing Pre Order Start =====");
+			PrintLn("===== Printing Pre-Order Start =====");
 
 			var sb = new StringBuilder();
 			PrintPreOrder(Root, sb);
 			var str = sb.ToString().Substring(0, sb.Length - 2);
 			PrintLn(str);
 
-			PrintLn("===== Printing Pre Order Finish =====");
+			PrintLn("===== Printing Pre-Order Finish =====");
 		}
 
 		private void PrintPreOrder(BinaryTreeNodeS<T> node, StringBuilder sb)
@@ -85,14 +85,14 @@ namespace Practice
 
 		public void PrintPostOrder()
 		{
-			PrintLn("===== Printing Post Order Start =====");
+			PrintLn("===== Printing Post-Order Start =====");
 
 			var sb = new StringBuilder();
 			PrintPostOrder(Root, sb);
 			var str = sb.ToString().Substring(0, sb.Length - 2);
 			PrintLn(str);
 
-			PrintLn("===== Printing Post Order Finish =====");
+			PrintLn("===== Printing Post-Order Finish =====");
 		}
 
 		private void PrintPostOrder(BinaryTreeNodeS<T> node, StringBuilder sb)
@@ -105,6 +105,32 @@ namespace Practice
 
 			sb.Append(node.ToString() + ", ");
 		}
+
+        public void PrintLevelOrder()
+        {
+            PrintLn("===== Printing Level-Order Start =====");
+
+            if (Root != null)
+            {
+                var sb = new StringBuilder();
+                var q = new Queue<BinaryTreeNodeS<T>>();
+
+                q.Enqueue(Root);
+
+                while (q.Count > 0)
+                {
+                    var node = q.Dequeue();
+                    sb.Append(node.ToString() + ", ");
+                    if (node.Left != null) q.Enqueue(node.Left);
+                    if (node.Right != null) q.Enqueue(node.Right);
+                }
+
+                var str = sb.ToString().Substring(0, sb.Length - 2);
+                PrintLn(str);
+            }
+
+            PrintLn("===== Printing Level-Order Finish =====");
+        }
 
 		public void PrintAllOrders()
 		{

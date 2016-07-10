@@ -103,6 +103,8 @@ namespace Practice
                 tree.Remove(1);
 
                 tree.PrintAllOrders();
+                PrintLn();
+                tree.PrintLevelOrder();
 			}
 
 			return tree;
