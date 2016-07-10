@@ -66,17 +66,70 @@ namespace Practice
 		public bool Remove(T value)
 		{
             if (Root == null) return false;
-            else if (Root.Value.Equals(value) == true)
+
+            if (Root.Value.Equals(value) == true)
             {
                 var tmpRoot = new BinaryTreeNodeS<T>();
                 tmpRoot.Left = Root;
-                Root.Remove(value, tmpRoot);
-                tmpRoot.Left = null;
+                Remove(tmpRoot, Root, value);
+                Root = tmpRoot.Left;
 
                 return true;
             }
-
-			return Root.Remove(value, null);
+            else
+            {
+                return Remove(null, Root, value);
+            }
 		}
+
+        private bool Remove(BinaryTreeNodeS<T> parent, BinaryTreeNodeS<T> cur, T value)
+        {
+            if (cur == null) return false;
+
+            var curValue = (int)Convert.ChangeType(cur.Value, TypeCode.Int32);
+            var compareValue = (int)Convert.ChangeType(value, TypeCode.Int32);
+
+            if (compareValue < curValue)
+            {
+                return Remove(cur, cur.Left, value);
+            }
+            else if (compareValue > curValue)
+            {
+                return Remove(cur, cur.Right, value);
+            }
+            else
+            {
+                if (cur.HasBothChildren() == true)
+                {
+                    var maxNode = GetMax(cur.Left);
+                    cur.Value = maxNode.Value;
+                    Remove(cur, cur.Left, cur.Value);
+                }
+                else if (parent.Left == cur)
+                {
+                    parent.Left = (cur.Left != null) ? cur.Left : cur.Right;
+                }
+                else
+                {
+                    parent.Right = (cur.Left != null) ? cur.Left : cur.Right;
+                }
+
+                return true;
+            }
+        }
+
+        public BinaryTreeNodeS<T> GetMax()
+        {
+            if (Root == null) return null;
+
+            return GetMax(Root);
+        }
+
+        private BinaryTreeNodeS<T> GetMax(BinaryTreeNodeS<T> node)
+        {
+            if (node.Right == null) return node;
+
+            return GetMax(node.Right);
+        }
 	}
 }

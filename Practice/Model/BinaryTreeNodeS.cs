@@ -77,53 +77,5 @@ namespace Practice
 
 			throw new Exception("Invalid Compare Type");
 		}
-
-		public bool Remove(T value, BinaryTreeNodeS<T> parent)
-		{
-			var thisValue = (int) Convert.ChangeType(this.Value, TypeCode.Int32);
-			var compareValue = (int) Convert.ChangeType(value, TypeCode.Int32);
-
-			if (compareValue < thisValue)
-			{
-                return (Left != null) ? Left.Remove(value, this) : false;
-			}
-			else if (compareValue > thisValue)
-			{
-                return (Right != null) ? Right.Remove(value, this) : false;
-			}
-			else
-			{
-                if (this.HasBothChildren() == true)
-                {
-                    var maxChild = Left.GetMax();
-                    Left.Remove(maxChild.Value, this);
-                    Value = maxChild.Value;
-                }
-                else if (parent.Left == this)
-                {
-                    parent.Left = (Left != null) ? Left : Right;
-                }
-                else if (parent.Right == this)
-                {
-                    parent.Right = (Left != null) ? Left : Right;
-                }
-
-                return true;
-			}
-		}
-
-		public BinaryTreeNodeS<T> GetMax()
-		{
-			if (Right == null) return this;
-
-            return Right.GetMax();
-		}
-
-		public BinaryTreeNodeS<T> GetMin()
-		{
-			if (Left == null) return this;
-
-            return Left.GetMin();
-		}
 	}
 }
