@@ -8,7 +8,7 @@ namespace Practice
 {
 	public class BinarySearchTreeS<T> : BinaryTreeS<T>
 	{
-		private static BinaryTreeNodeS<T>[] treeList = new BinaryTreeNodeS<T>[256];
+		public int Count;
 
 		public BinarySearchTreeS() { }
 
@@ -25,7 +25,11 @@ namespace Practice
 
 		private BinaryTreeNodeS<T> Insert(BinaryTreeNodeS<T> cur, BinaryTreeNodeS<T> node)
 		{
-			if (cur == null) return node;
+			if (cur == null)
+			{
+				Count++;
+				return node;
+			}
 
 			var compareResult = node.CompareTo(cur);
 
@@ -63,73 +67,78 @@ namespace Practice
 			else return Contains(cur.Right, node);
 		}
 
-		public bool Remove(T value)
+		public void Remove(T value)
 		{
-            if (Root == null) return false;
+			Root = Remove(Root, value);
 
-            if (Root.Value.Equals(value) == true)
-            {
-                var tmpRoot = new BinaryTreeNodeS<T>();
-                tmpRoot.Left = Root;
-                Remove(tmpRoot, Root, value);
-                Root = tmpRoot.Left;
-
-                return true;
-            }
-            else
-            {
-                return Remove(null, Root, value);
-            }
+			Count--;
 		}
 
-        private bool Remove(BinaryTreeNodeS<T> parent, BinaryTreeNodeS<T> cur, T value)
-        {
-            if (cur == null) return false;
+		private BinaryTreeNodeS<T> Remove(BinaryTreeNodeS<T> parent, T toDelete)
+		{
+			if (parent == null) throw new Exception("Nothing to remove");
 
-            var curValue = (int)Convert.ChangeType(cur.Value, TypeCode.Int32);
-            var compareValue = (int)Convert.ChangeType(value, TypeCode.Int32);
+			var compareTo = CompareTo(toDelete, parent);
 
-            if (compareValue < curValue)
-            {
-                return Remove(cur, cur.Left, value);
-            }
-            else if (compareValue > curValue)
-            {
-                return Remove(cur, cur.Right, value);
-            }
-            else
-            {
-                if (cur.HasBothChildren() == true)
-                {
-                    var maxNode = GetMax(cur.Left);
-                    cur.Value = maxNode.Value;
-                    Remove(cur, cur.Left, cur.Value);
-                }
-                else if (parent.Left == cur)
-                {
-                    parent.Left = (cur.Left != null) ? cur.Left : cur.Right;
-                }
-                else
-                {
-                    parent.Right = (cur.Left != null) ? cur.Left : cur.Right;
-                }
+			if (compareTo < 0)
+			{
+				parent.Left = Remove(parent.Left, toDelete);
+			}
+			else if (compareTo > 0)
+			{
+				parent.Right = Remove(parent.Right, toDelete);
+			}
+			else
+			{
+				if (parent.Left == null) return parent.Right;
+				else if (parent.Right == null) return parent.Left;
+				else //has both children
+				{
+					var maxNode = GetMax(parent.Left);
+					parent.Value = maxNode.Value;
+					parent.Left = Remove(parent.Left, parent.Value);
+				}
+			}
 
-                return true;
-            }
-        }
+			return parent;
+		}
 
-        public BinaryTreeNodeS<T> GetMax()
-        {
-            if (Root == null) return null;
+		private int CompareTo(T toDelete, BinaryTreeNodeS<T> parent)
+		{
+			var parentValue = (int)Convert.ChangeType(parent.Value, TypeCode.Int32);
+			var toDeleteValue = (int)Convert.ChangeType(toDelete, TypeCode.Int32);
 
-            return GetMax(Root);
-        }
+			if (toDeleteValue < parentValue) return -1;
+			else if (toDeleteValue > parentValue) return 1;
+			else return 0;
+		}
 
-        private BinaryTreeNodeS<T> GetMax(BinaryTreeNodeS<T> node)
-        {
-            if (node.Right == null) return node;
+		public BinaryTreeNodeS<T> GetMax()
+		{
+			if (Root == null) return null;
 
-            return GetMax(node.Right);
-        }
+			return GetMax(Root);
+		}
+
+		private BinaryTreeNodeS<T> GetMax(BinaryTreeNodeS<T> node)
+		{
+			if (node.Right == null) return node;
+
+			return GetMax(node.Right);
+		}
+
+		public void Balance()
+		{
+			if (Root == null) return;
+
+			var tmpTree = new BinarySearchTreeS<T>();
+
+			for (var i = 0; i < Count; i++)
+			{
+				tmpTree.Insert(null);
+			}
+
+			//TraverseInOrder(Root, tmpTree.Root);
+		}
 	}
 }

@@ -95,14 +95,18 @@ namespace Practice
                 tree.Insert(-1);
                 tree.Insert(-2);
 
-                tree.Remove(15);
-                tree.Remove(14);
-                tree.Remove(10);
-                tree.Remove(3);
-                tree.Remove(2);
-                tree.Remove(1);
+				PrintLn("COUNT : " + tree.Count);
 
-                tree.PrintAllOrders();
+				tree.Remove(15);
+				tree.Remove(14);
+				tree.Remove(10);
+				tree.Remove(3);
+				tree.Remove(2);
+				tree.Remove(1);
+
+				PrintLn("COUNT : " + tree.Count);
+
+				tree.PrintAllOrders();
                 PrintLn();
                 tree.PrintLevelOrder();
 			}
