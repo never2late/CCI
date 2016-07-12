@@ -127,6 +127,12 @@ namespace Practice
 			return GetMax(node.Right);
 		}
 
+		/* 
+			http://stackoverflow.com/questions/14001676/balancing-a-bst
+			1. Build a dummy complete tree with n nodes. All the values to each node will be initialized to some garbage value.
+			2. Degenerate the original tree into a queue by traversing in-order. 
+			3. Traverse the dummy tree in-order and assign dequeued values to the dummy nodes.
+		*/
 		public void Balance()
 		{
 			if (Root == null) return;

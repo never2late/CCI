@@ -157,7 +157,11 @@ namespace Practice
 			return 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
 		}
 		/* 
-		http://www.geeksforgeeks.org/given-linked-list-representation-of-complete-tree-convert-it-to-linked-representation/
+			http://www.geeksforgeeks.org/given-linked-list-representation-of-complete-tree-convert-it-to-linked-representation/
+			1. Create an empty root node and enqueue it to a temporary queue. 
+			2. Dequeue a node and assign next two values to its left and right. 
+			3. Enqueue left and right nodes into the queue. 
+			4. Repeat 2-4 until finished. 
 		*/
 		public BinaryTreeS<T> CreateCompleteTree(int count)
 		{
