@@ -131,14 +131,26 @@ namespace Practice
 		{
 			if (Root == null) return;
 
-			var tmpTree = new BinarySearchTreeS<T>();
-
+			var tmpTree = new BinarySearchTreeS<int>();
 			for (var i = 0; i < Count; i++)
 			{
-				tmpTree.Insert(null);
+				tmpTree.Insert(i);
 			}
 
-			//TraverseInOrder(Root, tmpTree.Root);
+			var q = new Queue<BinaryTreeNodeS<T>>();
+
+			DegenerateIntoQueue(Root, q);
+
+			var a = q;
+		}
+
+		private void DegenerateIntoQueue(BinaryTreeNodeS<T> node, Queue<BinaryTreeNodeS<T>> q)
+		{
+			if (node == null) return;
+
+			DegenerateIntoQueue(node.Left, q);
+			q.Enqueue(node);
+			DegenerateIntoQueue(node.Right, q);
 		}
 	}
 }

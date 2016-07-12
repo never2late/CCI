@@ -92,8 +92,8 @@ namespace Practice
 				tree.Insert(3);
 				tree.Insert(14);
 				tree.Insert(10);
-                tree.Insert(-1);
-                tree.Insert(-2);
+				tree.Insert(-1);
+				tree.Insert(-2);
 
 				PrintLn("COUNT : " + tree.Count);
 
@@ -108,7 +108,11 @@ namespace Practice
 
 				tree.PrintAllOrders();
                 PrintLn();
-                tree.PrintLevelOrder();
+                //tree.PrintLevelOrder();
+				var height = tree.GetHeight();
+				PrintLn("Height : " + height);
+
+				tree.Balance();
 			}
 
 			return tree;

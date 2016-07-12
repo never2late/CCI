@@ -140,5 +140,19 @@ namespace Practice
 			PrintLn();
 			PrintPostOrder();
 		}
+
+		public int GetHeight()
+		{
+			if (Root == null) return 0;
+
+			return GetHeight(Root);
+		}
+
+		private int GetHeight(BinaryTreeNodeS<T> node)
+		{
+			if (node == null) return -1;
+
+			return 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
+		}
 	}
 }
