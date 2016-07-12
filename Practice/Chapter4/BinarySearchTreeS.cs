@@ -131,26 +131,40 @@ namespace Practice
 		{
 			if (Root == null) return;
 
-			var tmpTree = new BinarySearchTreeS<int>();
-			for (var i = 0; i < Count; i++)
-			{
-				tmpTree.Insert(i);
-			}
+			PrintLn("\n=========== Balancing BST ===========\n");
 
-			var q = new Queue<BinaryTreeNodeS<T>>();
+			var completeTree = CreateCompleteTree(Count);
+			var inOrderQueue = ToInOrderQueue();
 
-			DegenerateIntoQueue(Root, q);
+			SetInOrder(completeTree.Root, inOrderQueue);
 
-			var a = q;
+			Root = completeTree.Root;
 		}
 
-		private void DegenerateIntoQueue(BinaryTreeNodeS<T> node, Queue<BinaryTreeNodeS<T>> q)
+		private Queue<T> ToInOrderQueue()
+		{
+			var q = new Queue<T>();
+			ToInOrderQueue(Root, q);
+
+			return q;
+		}
+
+		private void ToInOrderQueue(BinaryTreeNodeS<T> node, Queue<T> q)
 		{
 			if (node == null) return;
 
-			DegenerateIntoQueue(node.Left, q);
-			q.Enqueue(node);
-			DegenerateIntoQueue(node.Right, q);
+			ToInOrderQueue(node.Left, q);
+			q.Enqueue(node.Value);
+			ToInOrderQueue(node.Right, q);
+		}
+
+		private void SetInOrder(BinaryTreeNodeS<T> node, Queue<T> q)
+		{
+			if (node == null) return;
+
+			SetInOrder(node.Left, q);
+			node.Value = q.Dequeue();
+			SetInOrder(node.Right, q);
 		}
 	}
 }

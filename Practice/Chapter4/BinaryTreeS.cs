@@ -139,6 +139,8 @@ namespace Practice
 			PrintPreOrder();
 			PrintLn();
 			PrintPostOrder();
+			PrintLn();
+			PrintLevelOrder();
 		}
 
 		public int GetHeight()
@@ -153,6 +155,29 @@ namespace Practice
 			if (node == null) return -1;
 
 			return 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
+		}
+		/* 
+		http://www.geeksforgeeks.org/given-linked-list-representation-of-complete-tree-convert-it-to-linked-representation/
+		*/
+		public BinaryTreeS<T> CreateCompleteTree(int count)
+		{
+			var completeTree = new BinaryTreeS<T>();
+			var q = new Queue<BinaryTreeNodeS<T>>();
+
+			completeTree.Root = new BinaryTreeNodeS<T>();
+			q.Enqueue(completeTree.Root);
+
+			for (var i = 1; i < count; i+=2)
+			{
+				var node = q.Dequeue();
+				node.Left = new BinaryTreeNodeS<T>();
+				node.Right = (i + 1 < count - 1) ? new BinaryTreeNodeS<T>() : null;
+
+				q.Enqueue(node.Left);
+				if (node.Right != null) q.Enqueue(node.Right);
+			}
+
+			return completeTree;
 		}
 	}
 }

@@ -108,11 +108,14 @@ namespace Practice
 
 				tree.PrintAllOrders();
                 PrintLn();
-                //tree.PrintLevelOrder();
 				var height = tree.GetHeight();
 				PrintLn("Height : " + height);
 
 				tree.Balance();
+				tree.PrintAllOrders();
+				PrintLn();
+				height = tree.GetHeight();
+				PrintLn("Height : " + height);
 			}
 
 			return tree;
