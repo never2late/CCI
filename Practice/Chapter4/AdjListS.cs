@@ -55,24 +55,19 @@ namespace Practice.Chapter4
 			var q = new Queue<int>();
 			q.Enqueue(0);
 
-			BreadthFirstSearch(q);
-		}
+            while (q.Count > 0)
+            {
+                var vertex = q.Dequeue();
+                var edgeList = vertexList[vertex];
 
-		public void BreadthFirstSearch(Queue<int> q)
-		{
-			while (q.Count > 0)
-			{
-				var vertex = q.Dequeue();
-				var edgeList = vertexList[vertex];
+                Print(vertex + " - ");
 
-				Print(vertex + " - ");
-
-				foreach (var edge in edgeList)
-				{
-					q.Enqueue(edge.Vertex);
-				}
-			}
-		}
+                foreach (var edge in edgeList)
+                {
+                    q.Enqueue(edge.Vertex);
+                }
+            }
+        }
 
 		public void AddEdge(int from, int to, int cost)
 		{

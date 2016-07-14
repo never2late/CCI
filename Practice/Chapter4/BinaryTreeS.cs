@@ -175,7 +175,7 @@ namespace Practice
 			{
 				var node = q.Dequeue();
 				node.Left = new BinaryTreeNodeS<T>();
-				node.Right = (i + 1 < count - 1) ? new BinaryTreeNodeS<T>() : null;
+				node.Right = (i + 1 < count) ? new BinaryTreeNodeS<T>() : null;
 
 				q.Enqueue(node.Left);
 				if (node.Right != null) q.Enqueue(node.Right);
