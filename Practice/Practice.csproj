@@ -43,12 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chapter4\AdjListS.cs" />
     <Compile Include="Chapter4\BinarySearchTreeS.cs" />
     <Compile Include="Chapter4\BinaryTreeS.cs" />
     <Compile Include="Chapter4\ChapterFourTester.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\Util.cs" />
     <Compile Include="Model\BinaryTreeNodeS.cs" />
+    <Compile Include="Model\EdgeS.cs" />
     <Compile Include="Model\NodeS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

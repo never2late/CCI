@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Practice.Chapter4;
 
 namespace Practice
 {
@@ -10,11 +11,67 @@ namespace Practice
 	{
 		public void Test(int question, int option)
 		{
-			if (question == 0)
+			if (question == -1)
+			{
+				var adjList = GetSampleAdjList(option);
+			}
+			else if (question == 0)
 			{
 				var tree = GetSampleBST(option);
 				tree.PrintMode = BinaryTreePrintMode.InOrder;
 			}
+		}
+
+		private AdjListS GetSampleAdjList(int option = 0)
+		{
+			AdjListS adjList = null;
+
+			if (option == 0)
+			{
+				adjList = new AdjListS(8);
+
+				adjList.AddBidirectedEdge(2, 0);
+				adjList.AddBidirectedEdge(2, 1);
+				adjList.AddBidirectedEdge(2, 3);
+				adjList.AddBidirectedEdge(2, 4);
+				adjList.AddBidirectedEdge(5, 1);
+				adjList.AddBidirectedEdge(5, 6);
+				adjList.AddBidirectedEdge(5, 7);
+
+				adjList.Print();
+			}
+			else if (option == 1)
+			{
+				adjList = new AdjListS(7);
+
+				adjList.AddBidirectedEdge(0, 1);
+				adjList.AddBidirectedEdge(0, 2);
+				adjList.AddBidirectedEdge(0, 3);
+				adjList.AddBidirectedEdge(1, 4);
+				adjList.AddBidirectedEdge(1, 5);
+				adjList.AddBidirectedEdge(2, 6);
+				adjList.AddBidirectedEdge(3, 5);
+
+				//adjList.Print();
+				adjList.DepthFirstSearch();
+			}
+			else if (option == 2)
+			{
+				adjList = new AdjListS(8);
+
+				adjList.AddEdge(0, 1);
+				adjList.AddEdge(0, 2);
+				adjList.AddEdge(1, 3);
+				adjList.AddEdge(1, 4);
+				adjList.AddEdge(2, 5);
+				adjList.AddEdge(2, 6);
+				adjList.AddEdge(4, 7);
+
+				//adjList.Print();
+				adjList.BreadthFirstSearch();
+			}
+
+			return adjList;
 		}
 
 		private BinarySearchTreeS<int> GetSampleBST(int option = 0)

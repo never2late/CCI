@@ -21,7 +21,7 @@ namespace Practice
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 			
-			Test(4, 0, 3);
+			Test(4, -1, 2);
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 
