@@ -183,5 +183,26 @@ namespace Practice
 
 			return completeTree;
 		}
+
+		public bool isBalanced()
+		{
+			if (Root == null) return true;
+
+			return GetMaxDepth(Root) - GetMinDepth(Root) < 2;
+		}
+
+		private int GetMaxDepth(BinaryTreeNodeS<T> node)
+		{
+			if (node == null) return 0;
+
+			return 1 + Math.Max(GetMaxDepth(node.Left), GetMaxDepth(node.Right));
+		}
+
+		private int GetMinDepth(BinaryTreeNodeS<T> node)
+		{
+			if (node == null) return 0;
+
+			return 1 + Math.Min(GetMinDepth(node.Left), GetMinDepth(node.Right));
+		}
 	}
 }

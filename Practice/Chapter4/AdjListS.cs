@@ -21,6 +21,19 @@ namespace Practice.Chapter4
 			}
 		}
 
+		public bool IsValidPath(int v1, int v2)
+		{
+			if (v1 == v2) return true;
+
+			var edgeList = vertexList[v1];
+			foreach (var edge in edgeList)
+			{
+				if (IsValidPath(edge.Vertex, v2) == true)  return true;
+			}
+
+			return false;
+		}
+
 		public void DepthFirstSearch()
 		{
 			if (IsEmptyList() == true) return;
