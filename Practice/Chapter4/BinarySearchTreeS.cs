@@ -172,5 +172,22 @@ namespace Practice
 			node.Value = q.Dequeue();
 			SetInOrder(node.Right, q);
 		}
+
+        public BinaryTreeNodeS<int> Question3(int[] array)
+        {
+            return Question3(array, 0, array.Length - 1);
+        }
+
+        private BinaryTreeNodeS<int> Question3(int[] array, int start, int end)
+        {
+            if (start > end) return null;
+
+            int mid = (start + end) / 2;
+            var node = new BinaryTreeNodeS<int>(array[mid]);
+            node.Left = Question3(array, start, mid - 1);
+            node.Right = Question3(array, mid + 1, end);
+
+            return node;
+        }
 	}
 }

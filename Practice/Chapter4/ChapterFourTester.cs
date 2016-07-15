@@ -9,100 +9,110 @@ namespace Practice
 {
 	public class ChapterFourTester : Util
 	{
-		public void Test(int question, int option)
+		public void Test(int q, int o)
 		{
-			if (question == -1)
+			if (q == -1 || q == 2)
 			{
-				var adjList = GetSampleAdjList(question, option);
+				var adjList = GetSampleAdjList(q, o);
 			}
-			else if (question == 0)
+			else if (q == 0 || q == 1 || q == 3)
 			{
-				var tree = GetSampleBST(question, option);
-				tree.PrintMode = BinaryTreePrintMode.InOrder;
+				var tree = GetSampleBST(q, o);
 			}
-			else if (question == 1)
-			{
-				var tree = GetSampleBST(question, option);
-			}
-			else if (question == 2)
-			{
-				var adjList = GetSampleAdjList(question, option);
-			}
-		}
+        }
 
 		private AdjListS GetSampleAdjList(int question, int option = 0)
 		{
 			AdjListS adjList = null;
 
-			if (question == -1)
-			{
-				if (option == 0)
-				{
-					adjList = new AdjListS(8);
+            if (question == -1)
+            {
+                if (option == 0)
+                {
+                    adjList = new AdjListS(8);
 
-					adjList.AddBidirectedEdge(2, 0);
-					adjList.AddBidirectedEdge(2, 1);
-					adjList.AddBidirectedEdge(2, 3);
-					adjList.AddBidirectedEdge(2, 4);
-					adjList.AddBidirectedEdge(5, 1);
-					adjList.AddBidirectedEdge(5, 6);
-					adjList.AddBidirectedEdge(5, 7);
+                    adjList.AddBidirectedEdge(2, 0);
+                    adjList.AddBidirectedEdge(2, 1);
+                    adjList.AddBidirectedEdge(2, 3);
+                    adjList.AddBidirectedEdge(2, 4);
+                    adjList.AddBidirectedEdge(5, 1);
+                    adjList.AddBidirectedEdge(5, 6);
+                    adjList.AddBidirectedEdge(5, 7);
 
-					adjList.Print();
-				}
-				else if (option == 1)
-				{
-					adjList = new AdjListS(7);
+                    adjList.Print();
+                }
+                else if (option == 1)
+                {
+                    adjList = new AdjListS(7);
 
-					adjList.AddBidirectedEdge(0, 1);
-					adjList.AddBidirectedEdge(0, 2);
-					adjList.AddBidirectedEdge(0, 3);
-					adjList.AddBidirectedEdge(1, 4);
-					adjList.AddBidirectedEdge(1, 5);
-					adjList.AddBidirectedEdge(2, 6);
-					adjList.AddBidirectedEdge(3, 5);
+                    adjList.AddBidirectedEdge(0, 1);
+                    adjList.AddBidirectedEdge(0, 2);
+                    adjList.AddBidirectedEdge(0, 3);
+                    adjList.AddBidirectedEdge(1, 4);
+                    adjList.AddBidirectedEdge(1, 5);
+                    adjList.AddBidirectedEdge(2, 6);
+                    adjList.AddBidirectedEdge(3, 5);
 
-					//adjList.Print();
-					adjList.DepthFirstSearch();
-				}
-				else if (option == 2)
-				{
-					adjList = new AdjListS(8);
+                    //adjList.Print();
+                    adjList.DepthFirstSearch();
+                }
+                else if (option == 2)
+                {
+                    adjList = new AdjListS(8);
 
-					adjList.AddEdge(0, 1);
-					adjList.AddEdge(0, 2);
-					adjList.AddEdge(1, 3);
-					adjList.AddEdge(1, 4);
-					adjList.AddEdge(2, 5);
-					adjList.AddEdge(2, 6);
-					adjList.AddEdge(4, 7);
+                    adjList.AddEdge(0, 1);
+                    adjList.AddEdge(0, 2);
+                    adjList.AddEdge(1, 3);
+                    adjList.AddEdge(1, 4);
+                    adjList.AddEdge(2, 5);
+                    adjList.AddEdge(2, 6);
+                    adjList.AddEdge(4, 7);
 
-					//adjList.Print();
-					adjList.BreadthFirstSearch();
-				}
-			}
-			else if (question == 2)
-			{
-				if (option == 0)
-				{
-					adjList = new AdjListS(10);
+                    //adjList.Print();
+                    adjList.BreadthFirstSearch();
+                }
+            }
+            else if (question == 2)
+            {
+                if (option == 0)
+                {
+                    adjList = new AdjListS(10);
 
-					adjList.AddEdge(0, 1);
-					adjList.AddEdge(0, 2);
-					adjList.AddEdge(0, 3);
-					var isValidPath = adjList.IsValidPath(0, 10);
-					PrintLn("IsValidPath : " + isValidPath);
+                    adjList.AddEdge(0, 1);
+                    adjList.AddEdge(0, 2);
+                    adjList.AddEdge(0, 3);
+                    var isValidPath = adjList.IsValidPathByDepthFirstSearch(0, 10);
+                    PrintLn("IsValidPath - Depth First: " + isValidPath);
 
-					adjList.AddEdge(3, 4);
-					adjList.AddEdge(4, 5);
-					adjList.AddEdge(5, 6);
-					adjList.AddEdge(6, 7);
-					adjList.AddEdge(7, 8);
-					adjList.AddEdge(8, 9);
-					isValidPath = adjList.IsValidPath(0, 9);
-					PrintLn("IsValidPath : " + isValidPath);
-				}
-			}
+                    adjList.AddEdge(3, 4);
+                    adjList.AddEdge(4, 5);
+                    adjList.AddEdge(5, 6);
+                    adjList.AddEdge(6, 7);
+                    adjList.AddEdge(7, 8);
+                    adjList.AddEdge(8, 9);
+                    isValidPath = adjList.IsValidPathByDepthFirstSearch(0, 9);
+                    PrintLn("IsValidPath - Depth First: " + isValidPath);
+                }
+                else if (option == 1)
+                {
+                    adjList = new AdjListS(10);
+
+                    adjList.AddEdge(0, 1);
+                    adjList.AddEdge(0, 2);
+                    adjList.AddEdge(0, 3);
+                    var isValidPath = adjList.IsValidPathByBreadthFirstSearch(0, 10);
+                    PrintLn("IsValidPath - Breadth First: " + isValidPath);
+
+                    adjList.AddEdge(3, 4);
+                    adjList.AddEdge(4, 5);
+                    adjList.AddEdge(5, 6);
+                    adjList.AddEdge(6, 7);
+                    adjList.AddEdge(7, 8);
+                    adjList.AddEdge(8, 9);
+                    isValidPath = adjList.IsValidPathByBreadthFirstSearch(0, 9);
+                    PrintLn("IsValidPath - Breadth First: " + isValidPath);
+                }
+            }
 
 			return adjList;
 		}
@@ -259,8 +269,22 @@ namespace Practice
 					PrintLn("Is Balanced : " + isBalanced);
 				}
 			}
+            else if (question == 3)
+            {
+                int n = 8;
+                var array = new int[n];
+                for (int i = 0; i < n; i++)
+                {
+                    array[i] = i;
+                }
 
-			return tree;
+                tree.Root = tree.Question3(array);
+
+                tree.PrintLevelOrder();
+                tree.PrintInOrder();
+            }
+
+            return tree;
 		}
 	}
 }

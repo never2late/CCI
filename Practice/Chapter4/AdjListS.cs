@@ -21,18 +21,52 @@ namespace Practice.Chapter4
 			}
 		}
 
-		public bool IsValidPath(int v1, int v2)
+		public bool IsValidPathByDepthFirstSearch(int v1, int v2)
 		{
-			if (v1 == v2) return true;
+            var hashSet = new HashSet<int>();
 
-			var edgeList = vertexList[v1];
-			foreach (var edge in edgeList)
-			{
-				if (IsValidPath(edge.Vertex, v2) == true)  return true;
-			}
-
-			return false;
+            return IsValidPath(v1, v2, hashSet);
 		}
+
+        private bool IsValidPath(int v1, int v2, HashSet<int> hashSet)
+        {
+            if (v1 == v2) return true;
+
+            hashSet.Add(v1);
+            var edgeList = vertexList[v1];
+
+            foreach (var edge in edgeList)
+            {
+                if (hashSet.Contains(edge.Vertex) == true) continue;
+                if (IsValidPathByDepthFirstSearch(edge.Vertex, v2) == true) return true;
+            }
+
+            return false;
+        }
+
+        public bool IsValidPathByBreadthFirstSearch(int from, int to)
+        {
+            var q = new Queue<int>();
+            var visitedSet = new HashSet<int>();
+            q.Enqueue(from);
+
+            while (q.Count > 0)
+            {
+                var vertex = q.Dequeue();
+                var edgeList = vertexList[vertex];
+                visitedSet.Add(vertex);
+
+                foreach (var edge in edgeList)
+                {
+                    if (visitedSet.Contains(edge.Vertex) == true) continue;
+                    if (edge.Vertex == to) return true;
+
+                    q.Enqueue(edge.Vertex);
+                }
+            }
+
+            return false;
+        }
 
 		public void DepthFirstSearch()
 		{
