@@ -13,6 +13,8 @@ namespace Practice
 		
 		public BinaryTreeNodeS<T> Left { get; set; }
 		public BinaryTreeNodeS<T> Right { get; set; }
+        public BinaryTreeNodeS<T> Parent { get; set; }
+        public int Depth { get; set; }
 
 		public bool HasLeftChild()
 		{

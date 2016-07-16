@@ -11,11 +11,12 @@ namespace Practice
 	{
 		public void Test(int q, int o)
 		{
+            //graph problems
 			if (q == -1 || q == 2)
 			{
 				var adjList = GetSampleAdjList(q, o);
-			}
-			else if (q == 0 || q == 1 || q == 3)
+			} //binary tree problems
+			else if (q == 0 || q == 1 || q == 3 || q == 4 || q == 5)
 			{
 				var tree = GetSampleBST(q, o);
 			}
@@ -117,158 +118,158 @@ namespace Practice
 			return adjList;
 		}
 
-		private BinarySearchTreeS<int> GetSampleBST(int question, int option = 0)
-		{
-			var tree = new BinarySearchTreeS<int>();
+        private BinarySearchTreeS<int> GetSampleBST(int question, int option = 0)
+        {
+            var tree = new BinarySearchTreeS<int>();
 
-			if (question == 0)
-			{
-				if (option == 0)
-				{
-					tree = new BinarySearchTreeS<int>();
+            if (question == 0)
+            {
+                if (option == 0)
+                {
+                    tree = new BinarySearchTreeS<int>();
 
-					tree.Insert(5);
-					tree.Insert(0);
-					tree.Insert(10);
-					tree.Insert(15);
+                    tree.Insert(5);
+                    tree.Insert(0);
+                    tree.Insert(10);
+                    tree.Insert(15);
 
-					tree.PrintAllOrders();
-				}
-				else if (option == 1)
-				{
-					tree = new BinarySearchTreeS<int>();
+                    tree.PrintAllOrders();
+                }
+                else if (option == 1)
+                {
+                    tree = new BinarySearchTreeS<int>();
 
-					tree.Insert(7);
-					tree.Insert(1);
-					tree.Insert(9);
-					tree.Insert(0);
-					tree.Insert(3);
-					tree.Insert(8);
-					tree.Insert(10);
-					tree.Insert(2);
-					tree.Insert(5);
-					tree.Insert(4);
-					tree.Insert(6);
+                    tree.Insert(7);
+                    tree.Insert(1);
+                    tree.Insert(9);
+                    tree.Insert(0);
+                    tree.Insert(3);
+                    tree.Insert(8);
+                    tree.Insert(10);
+                    tree.Insert(2);
+                    tree.Insert(5);
+                    tree.Insert(4);
+                    tree.Insert(6);
 
-					tree.PrintAllOrders();
-				}
-				else if (option == 2)
-				{
-					tree = new BinarySearchTreeS<int>();
+                    tree.PrintAllOrders();
+                }
+                else if (option == 2)
+                {
+                    tree = new BinarySearchTreeS<int>();
 
-					tree.Insert(7);
-					tree.Insert(4);
-					tree.Insert(4);
-					tree.Insert(12);
-					tree.Insert(2);
-					tree.Insert(6);
-					tree.Insert(9);
-					tree.Insert(19);
-					tree.Insert(3);
-					tree.Insert(5);
-					tree.Insert(8);
-					tree.Insert(11);
-					tree.Insert(15);
-					tree.Insert(15);
-					tree.Insert(20);
+                    tree.Insert(7);
+                    tree.Insert(4);
+                    tree.Insert(4);
+                    tree.Insert(12);
+                    tree.Insert(2);
+                    tree.Insert(6);
+                    tree.Insert(9);
+                    tree.Insert(19);
+                    tree.Insert(3);
+                    tree.Insert(5);
+                    tree.Insert(8);
+                    tree.Insert(11);
+                    tree.Insert(15);
+                    tree.Insert(15);
+                    tree.Insert(20);
 
-					tree.PrintAllOrders();
+                    tree.PrintAllOrders();
 
-					//for (var i = 0; i <= 30; i++)
-					//{
-					//	PrintLn("Tree contains " + i + " : " + tree.Contains(i));
-					//}
-				}
-				else if (option == 3)
-				{
-					tree = new BinarySearchTreeS<int>();
+                    //for (var i = 0; i <= 30; i++)
+                    //{
+                    //	PrintLn("Tree contains " + i + " : " + tree.Contains(i));
+                    //}
+                }
+                else if (option == 3)
+                {
+                    tree = new BinarySearchTreeS<int>();
 
-					tree.Insert(15);
-					tree.Insert(0);
-					tree.Insert(30);
-					tree.Insert(-5);
-					tree.Insert(2);
-					tree.Insert(-10);
-					tree.Insert(-3);
-					tree.Insert(1);
-					tree.Insert(3);
-					tree.Insert(14);
-					tree.Insert(10);
-					tree.Insert(-1);
-					tree.Insert(-2);
+                    tree.Insert(15);
+                    tree.Insert(0);
+                    tree.Insert(30);
+                    tree.Insert(-5);
+                    tree.Insert(2);
+                    tree.Insert(-10);
+                    tree.Insert(-3);
+                    tree.Insert(1);
+                    tree.Insert(3);
+                    tree.Insert(14);
+                    tree.Insert(10);
+                    tree.Insert(-1);
+                    tree.Insert(-2);
 
-					PrintLn("COUNT : " + tree.Count);
+                    PrintLn("COUNT : " + tree.Count);
 
-					tree.Remove(15);
-					tree.Remove(14);
-					tree.Remove(10);
-					tree.Remove(3);
-					tree.Remove(2);
-					tree.Remove(1);
+                    tree.Remove(15);
+                    tree.Remove(14);
+                    tree.Remove(10);
+                    tree.Remove(3);
+                    tree.Remove(2);
+                    tree.Remove(1);
 
-					PrintLn("COUNT : " + tree.Count);
+                    PrintLn("COUNT : " + tree.Count);
 
-					tree.PrintAllOrders();
-					PrintLn();
-					var height = tree.GetHeight();
-					PrintLn("Height : " + height);
+                    tree.PrintAllOrders();
+                    PrintLn();
+                    var height = tree.GetHeight();
+                    PrintLn("Height : " + height);
 
-					tree.Balance();
-					tree.PrintAllOrders();
-					PrintLn();
-					height = tree.GetHeight();
-					PrintLn("Height : " + height);
-				}
-			}
-			else if (question == 1)
-			{
-				if (option == 0)
-				{
-					tree = new BinarySearchTreeS<int>();
+                    tree.Balance();
+                    tree.PrintAllOrders();
+                    PrintLn();
+                    height = tree.GetHeight();
+                    PrintLn("Height : " + height);
+                }
+            }
+            else if (question == 1)
+            {
+                if (option == 0)
+                {
+                    tree = new BinarySearchTreeS<int>();
 
-					tree.Insert(15);
-					tree.Insert(0);
-					tree.Insert(30);
-					tree.Insert(-5);
-					tree.Insert(2);
-					tree.Insert(-10);
-					tree.Insert(-3);
-					tree.Insert(1);
-					tree.Insert(3);
-					tree.Insert(14);
-					tree.Insert(10);
-					tree.Insert(-1);
-					tree.Insert(-2);
+                    tree.Insert(15);
+                    tree.Insert(0);
+                    tree.Insert(30);
+                    tree.Insert(-5);
+                    tree.Insert(2);
+                    tree.Insert(-10);
+                    tree.Insert(-3);
+                    tree.Insert(1);
+                    tree.Insert(3);
+                    tree.Insert(14);
+                    tree.Insert(10);
+                    tree.Insert(-1);
+                    tree.Insert(-2);
 
-					var isBalanced = tree.isBalanced();
-					PrintLn("Is Balanced : " + isBalanced);
+                    var isBalanced = tree.isBalanced();
+                    PrintLn("Is Balanced : " + isBalanced);
 
-					tree = new BinarySearchTreeS<int>();
+                    tree = new BinarySearchTreeS<int>();
 
-					tree.Insert(2);
-					tree.Insert(-2);
-					tree.Insert(14);
-					isBalanced = tree.isBalanced();
-					PrintLn("Is Balanced : " + isBalanced);
+                    tree.Insert(2);
+                    tree.Insert(-2);
+                    tree.Insert(14);
+                    isBalanced = tree.isBalanced();
+                    PrintLn("Is Balanced : " + isBalanced);
 
-					tree.Insert(-5);
-					isBalanced = tree.isBalanced();
-					PrintLn("Is Balanced : " + isBalanced);
+                    tree.Insert(-5);
+                    isBalanced = tree.isBalanced();
+                    PrintLn("Is Balanced : " + isBalanced);
 
-					tree.Insert(0);
-					tree.Insert(10);
-					isBalanced = tree.isBalanced();
-					PrintLn("Is Balanced : " + isBalanced);
+                    tree.Insert(0);
+                    tree.Insert(10);
+                    isBalanced = tree.isBalanced();
+                    PrintLn("Is Balanced : " + isBalanced);
 
-					tree.Insert(-10);
-					isBalanced = tree.isBalanced();
-					PrintLn("Is Balanced : " + isBalanced);
+                    tree.Insert(-10);
+                    isBalanced = tree.isBalanced();
+                    PrintLn("Is Balanced : " + isBalanced);
 
-					tree.Insert(15);
-					isBalanced = tree.isBalanced();
-					PrintLn("Is Balanced : " + isBalanced);
-				}
-			}
+                    tree.Insert(15);
+                    isBalanced = tree.isBalanced();
+                    PrintLn("Is Balanced : " + isBalanced);
+                }
+            }
             else if (question == 3)
             {
                 int n = 8;
@@ -282,6 +283,83 @@ namespace Practice
 
                 tree.PrintLevelOrder();
                 tree.PrintInOrder();
+            }
+            else if (question == 4)
+            {
+                //int n = 8;
+                //var array = new int[n];
+                //for (int i = 0; i < n; i++)
+                //{
+                //    array[i] = i;
+                //}
+
+                //tree.Root = tree.Question3(array);
+
+                tree.Insert(15);
+                tree.Insert(0);
+                tree.Insert(30);
+                tree.Insert(-5);
+                tree.Insert(2);
+                tree.Insert(-10);
+                tree.Insert(-3);
+                tree.Insert(1);
+                tree.Insert(3);
+                tree.Insert(14);
+                tree.Insert(10);
+                tree.Insert(-1);
+                tree.Insert(-2);
+                var dict = tree.Question4(tree);
+                if (option == 1) dict = tree.Question4DFS(tree);
+
+                tree.PrintLevelOrder();
+                var sb = new StringBuilder();
+
+                for (var i = 0; i < dict.Count; i++)
+                {
+                    sb.Append("depth " + i + " : ");
+                    var depthList = dict[i];
+                    foreach (var depthNode in depthList)
+                    {
+                        sb.Append(depthNode.Value + ", ");
+                    }
+                    sb.Append("\n");
+                }
+
+                PrintLn(sb.ToString());
+            }
+
+            else if (question == 5)
+            {
+                var node1 = new BinaryTreeNodeS<int>(15);
+                var node2 = new BinaryTreeNodeS<int>(0);
+                var node3 = new BinaryTreeNodeS<int>(30);
+                var node4 = new BinaryTreeNodeS<int>(-5);
+                var node5 = new BinaryTreeNodeS<int>(2);
+                var node6 = new BinaryTreeNodeS<int>(-10);
+                var node7 = new BinaryTreeNodeS<int>(-3);
+                var node8 = new BinaryTreeNodeS<int>(1);
+                var node9 = new BinaryTreeNodeS<int>(3);
+                var node10 = new BinaryTreeNodeS<int>(14);
+                var node11 = new BinaryTreeNodeS<int>(10);
+                var node12 = new BinaryTreeNodeS<int>(-1);
+                var node13 = new BinaryTreeNodeS<int>(-2);
+                tree.Insert(node1);
+                tree.Insert(node2);
+                tree.Insert(node3);
+                tree.Insert(node4);
+                tree.Insert(node5);
+                tree.Insert(node6);
+                tree.Insert(node7);
+                tree.Insert(node8);
+                tree.Insert(node9);
+                tree.Insert(node10);
+                tree.Insert(node11);
+                tree.Insert(node12);
+                tree.Insert(node13);
+
+                var testNode = node13;
+                var result = tree.Question5(testNode);
+                PrintLn("Successor of " + testNode.Value + " : " + ((result == null) ? "none" : result.Value + ""));
             }
 
             return tree;

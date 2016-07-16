@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,10 +37,12 @@ namespace Practice
 			if (compareResult < 0)
 			{
 				cur.Left = Insert(cur.Left, node);
+                cur.Left.Parent = cur;
 			}
 			else
 			{
 				cur.Right = Insert(cur.Right, node);
+                cur.Right.Parent = cur;
 			}
 
 			return cur;
@@ -186,6 +189,95 @@ namespace Practice
             var node = new BinaryTreeNodeS<int>(array[mid]);
             node.Left = Question3(array, start, mid - 1);
             node.Right = Question3(array, mid + 1, end);
+
+            return node;
+        }
+
+        public Dictionary<int, List<BinaryTreeNodeS<int>>> Question4(BinarySearchTreeS<int> bst)
+        {
+            if (bst.Root == null) return new Dictionary<int, List<BinaryTreeNodeS<int>>>();
+
+            var dictionary = new Dictionary<int, List<BinaryTreeNodeS<int>>>();
+            var q = new Queue<BinaryTreeNodeS<int>>();
+            bst.Root.Depth = 0;
+            q.Enqueue(bst.Root);
+
+            while (q.Count > 0)
+            {
+                var node = q.Dequeue();
+                var depth = node.Depth;
+                if (dictionary.ContainsKey(depth) == false)
+                {
+                    var list = new List<BinaryTreeNodeS<int>>();
+                    dictionary.Add(depth, list);
+                }
+
+                dictionary[depth].Add(node);
+
+                if (node.Left != null)
+                {
+                    node.Left.Depth = depth + 1;
+                    q.Enqueue(node.Left);
+                }
+                if (node.Right != null)
+                {
+                    node.Right.Depth = depth + 1;
+                    q.Enqueue(node.Right);
+                }
+            }
+
+            return dictionary;
+        }
+
+        public Dictionary<int, List<BinaryTreeNodeS<int>>> Question4DFS(BinarySearchTreeS<int> bst)
+        {
+            if (bst.Root == null) return new Dictionary<int, List<BinaryTreeNodeS<int>>>();
+
+            var dict = new Dictionary<int, List<BinaryTreeNodeS<int>>>();
+
+            Question4DFS(bst.Root, dict, 0);
+
+            return dict;
+        }
+
+        public void Question4DFS(BinaryTreeNodeS<int> node, Dictionary<int, List<BinaryTreeNodeS<int>>> dict, int depth)
+        {
+            if (node == null) return;
+
+            Question4DFS(node.Left, dict, depth + 1);
+
+            if (dict.ContainsKey(depth) == false)
+            {
+                var list = new List<BinaryTreeNodeS<int>>();
+                dict.Add(depth, list);
+            }
+
+            dict[depth].Add(node);
+
+            Question4DFS(node.Right, dict, depth + 1);
+        }
+
+        public BinaryTreeNodeS<int> Question5(BinaryTreeNodeS<int> node)
+        {
+            if (node == null) return null;
+            if (node.Parent == null || node.Right != null) return LeftMost(node.Right);
+
+            var cur = node;
+            while (node.Parent != null)
+            {
+                node = node.Parent;
+                if (node.Left == cur) return node;
+                cur = node;
+            }
+
+            return Question5(node.Parent);
+        }
+
+        private BinaryTreeNodeS<int> LeftMost(BinaryTreeNodeS<int> node)
+        {
+            if (node == null) return null;
+
+            while (node.Left != null) node = node.Left;
 
             return node;
         }

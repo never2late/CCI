@@ -25,10 +25,10 @@ namespace Practice.Chapter4
 		{
             var hashSet = new HashSet<int>();
 
-            return IsValidPath(v1, v2, hashSet);
+            return IsValidPathByDepthFirstSearch(v1, v2, hashSet);
 		}
 
-        private bool IsValidPath(int v1, int v2, HashSet<int> hashSet)
+        private bool IsValidPathByDepthFirstSearch(int v1, int v2, HashSet<int> hashSet)
         {
             if (v1 == v2) return true;
 
