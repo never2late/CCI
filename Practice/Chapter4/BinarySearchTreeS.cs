@@ -270,7 +270,7 @@ namespace Practice
                 cur = node;
             }
 
-            return Question5(node.Parent);
+            return null;
         }
 
         private BinaryTreeNodeS<int> LeftMost(BinaryTreeNodeS<int> node)
@@ -280,6 +280,33 @@ namespace Practice
             while (node.Left != null) node = node.Left;
 
             return node;
+        }
+
+        public BinaryTreeNodeS<int> Question5PreOrder(BinaryTreeNodeS<int> node)
+        {
+            if (node == null) return null;
+            if (node.Left != null) return node.Left;
+            if (node.Right != null) return node.Right;
+            if (node.Parent == null) return null;
+
+            var cur = node;
+            while (node.Parent != null)
+            {
+                node = node.Parent;
+                if (node.Left == cur && node.Right != null) return node.Right;
+                cur = node;
+            }
+
+            return null; 
+        }
+
+        public BinaryTreeNodeS<int> Question5PostOrder(BinaryTreeNodeS<int> node)
+        {
+            if (node == null) return null;
+            if (node.Parent == null) return null;
+            if (node.Parent.Right == node) return node.Parent;
+            if (node.Parent.Right != null) return node.Parent.Right;
+            return node.Parent;
         }
 	}
 }

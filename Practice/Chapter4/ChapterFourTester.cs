@@ -343,6 +343,7 @@ namespace Practice
                 var node11 = new BinaryTreeNodeS<int>(10);
                 var node12 = new BinaryTreeNodeS<int>(-1);
                 var node13 = new BinaryTreeNodeS<int>(-2);
+                var node14 = new BinaryTreeNodeS<int>(45);
                 tree.Insert(node1);
                 tree.Insert(node2);
                 tree.Insert(node3);
@@ -356,10 +357,43 @@ namespace Practice
                 tree.Insert(node11);
                 tree.Insert(node12);
                 tree.Insert(node13);
+                tree.Insert(node14);
+                BinaryTreeNodeS<int>[] nodeList = {
+                    node1, node2, node3, node4, node5, node6, node7,
+                    node8, node9, node10, node11, node12, node13, node14
+                };
 
-                var testNode = node13;
-                var result = tree.Question5(testNode);
-                PrintLn("Successor of " + testNode.Value + " : " + ((result == null) ? "none" : result.Value + ""));
+                BinaryTreeNodeS<int> result = null;
+                if (option == 0)
+                {
+                    PrintLn("In-Order Successor List -----");
+                    for (var i = 0; i < nodeList.Length; i++)
+                    {
+                        var testNode = nodeList[i];
+                        result = tree.Question5(testNode);
+                        PrintLn("Successor of " + testNode.Value + " : " + ((result == null) ? "none" : result.Value + ""));
+                    }
+                }
+                else if (option == 1)
+                {
+                    PrintLn("Pre-Order Successor List -----");
+                    for (var i = 0; i < nodeList.Length; i++)
+                    {
+                        var testNode = nodeList[i];
+                        result = tree.Question5PreOrder(testNode);
+                        PrintLn("Successor of " + testNode.Value + " : " + ((result == null) ? "none" : result.Value + ""));
+                    }
+                }
+                else if (option == 2)
+                {
+                    PrintLn("Post-Order Successor List -----");
+                    for (var i = 0; i < nodeList.Length; i++)
+                    {
+                        var testNode = nodeList[i];
+                        result = tree.Question5PostOrder(testNode);
+                        PrintLn("Successor of " + testNode.Value + " : " + ((result == null) ? "none" : result.Value + ""));
+                    }
+                }
             }
 
             return tree;
