@@ -344,6 +344,10 @@ namespace Practice
                 var node12 = new BinaryTreeNodeS<int>(-1);
                 var node13 = new BinaryTreeNodeS<int>(-2);
                 var node14 = new BinaryTreeNodeS<int>(45);
+                var node15 = new BinaryTreeNodeS<int>(20);
+                var node16 = new BinaryTreeNodeS<int>(17);
+                var node17 = new BinaryTreeNodeS<int>(25);
+                var node18 = new BinaryTreeNodeS<int>(22);
                 tree.Insert(node1);
                 tree.Insert(node2);
                 tree.Insert(node3);
@@ -358,14 +362,20 @@ namespace Practice
                 tree.Insert(node12);
                 tree.Insert(node13);
                 tree.Insert(node14);
+                tree.Insert(node15);
+                tree.Insert(node16);
+                tree.Insert(node17);
+                tree.Insert(node18);
                 BinaryTreeNodeS<int>[] nodeList = {
                     node1, node2, node3, node4, node5, node6, node7,
-                    node8, node9, node10, node11, node12, node13, node14
+                    node8, node9, node10, node11, node12, node13, node14,
+                    node15, node16, node17, node18
                 };
 
                 BinaryTreeNodeS<int> result = null;
                 if (option == 0)
                 {
+                    tree.PrintInOrder();
                     PrintLn("In-Order Successor List -----");
                     for (var i = 0; i < nodeList.Length; i++)
                     {
@@ -376,6 +386,7 @@ namespace Practice
                 }
                 else if (option == 1)
                 {
+                    tree.PrintPreOrder();
                     PrintLn("Pre-Order Successor List -----");
                     for (var i = 0; i < nodeList.Length; i++)
                     {
@@ -386,6 +397,7 @@ namespace Practice
                 }
                 else if (option == 2)
                 {
+                    tree.PrintPostOrder();
                     PrintLn("Post-Order Successor List -----");
                     for (var i = 0; i < nodeList.Length; i++)
                     {

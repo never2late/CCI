@@ -287,7 +287,6 @@ namespace Practice
             if (node == null) return null;
             if (node.Left != null) return node.Left;
             if (node.Right != null) return node.Right;
-            if (node.Parent == null) return null;
 
             var cur = node;
             while (node.Parent != null)
@@ -304,9 +303,19 @@ namespace Practice
         {
             if (node == null) return null;
             if (node.Parent == null) return null;
+            if (node.Parent.Left == node)
+            {
+                if (node.Parent.Right == null) return node.Parent;
+
+                node = node.Parent.Right;
+                while (node.Left != null || node.Right != null)
+                {
+                    node = (node.Left != null) ? node.Left : node.Right;
+                }
+                return node;
+            }
             if (node.Parent.Right == node) return node.Parent;
-            if (node.Parent.Right != null) return node.Parent.Right;
-            return node.Parent;
+            return null;
         }
 	}
 }
