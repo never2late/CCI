@@ -204,5 +204,76 @@ namespace Practice
 
 			return 1 + Math.Min(GetMinDepth(node.Left), GetMinDepth(node.Right));
 		}
+
+		public BinaryTreeNodeS<T> GetFirstCommonParent(BinaryTreeNodeS<T> n1, BinaryTreeNodeS<T> n2)
+		{
+			if (Root == null) return null;
+
+			if (Contains(n1, n2) == true) return GetParentOf(n1);
+			else if (Contains(n2, n1) == true) return GetParentOf(n2);
+
+			var result = GetFirstCommonParent(Root, n1, n2);
+			return (result == null) ? GetFirstCommonParent(Root, n2, n1) : result;
+		}
+
+		private BinaryTreeNodeS<T> GetFirstCommonParent(BinaryTreeNodeS<T> cur, BinaryTreeNodeS<T> n1, BinaryTreeNodeS<T> n2)
+		{
+			if (cur == null) return null;
+
+			var leftContains = Contains(cur.Left, n1);
+			var rightContains = Contains(cur.Right, n2);
+			if (leftContains && rightContains)
+			{
+				return cur;
+			}
+			else if (leftContains)
+			{
+				return GetFirstCommonParent(cur.Left, n1, n2);
+			}
+			else if (rightContains)
+			{
+				return GetFirstCommonParent(cur.Right, n1, n2);
+			}
+
+			return null;
+		}
+
+		public BinaryTreeNodeS<T> GetParentOf(BinaryTreeNodeS<T> node)
+		{
+			if (Root == null) return null;
+
+			return GetParentOf(Root, node);
+		}
+
+		private BinaryTreeNodeS<T> GetParentOf(BinaryTreeNodeS<T> cur, BinaryTreeNodeS<T> node)
+		{
+			if (cur == null) return null;
+			if (cur.Left != null && cur.Left.Value.Equals(node.Value) ||
+				cur.Right != null && cur.Right.Value.Equals(node.Value)) return cur;
+
+			if (Contains(cur.Left, node)) return GetParentOf(cur.Left, node);
+			else if (Contains(cur.Right, node)) return GetParentOf(cur.Right, node);
+
+			return null;
+		}
+
+		public bool Contains(BinaryTreeNodeS<T> node)
+		{
+			if (Root == null) return false;
+
+			return Contains(Root, node);
+		}
+
+		private bool Contains(BinaryTreeNodeS<T> cur, BinaryTreeNodeS<T> node)
+		{
+			if (cur == null) return false;
+
+			if (cur.Value.Equals(node.Value) == true) return true;
+
+			if (Contains(cur.Left, node) == true) return true;
+			if (Contains(cur.Right, node) == true) return true;
+
+			return false;
+		}
 	}
 }
