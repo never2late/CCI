@@ -79,5 +79,23 @@ namespace Practice
 
 			throw new Exception("Invalid Compare Type");
 		}
+
+		public bool HasChild(BinaryTreeNodeS<T> node)
+		{
+			return HasChild(this, node);
+		}
+
+		private bool HasChild(BinaryTreeNodeS<T> cur, BinaryTreeNodeS<T> node)
+		{
+			if (cur == null) return false;
+			if (cur.Value.Equals(node.Value) == true) return true;
+
+			return HasChild(cur.Left, node) || HasChild(cur.Right, node);
+		}
+
+		public bool Equals(BinaryTreeNodeS<T> node)
+		{
+			return this.Value.Equals(node.Value);
+		}
 	}
 }

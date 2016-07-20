@@ -208,34 +208,34 @@ namespace Practice
 		public BinaryTreeNodeS<T> GetFirstCommonParent(BinaryTreeNodeS<T> n1, BinaryTreeNodeS<T> n2)
 		{
 			if (Root == null) return null;
+			if (Root.Value.Equals(n1.Value) || Root.Value.Equals(n2.Value)) return null;
 
-			if (Contains(n1, n2) == true) return GetParentOf(n1);
-			else if (Contains(n2, n1) == true) return GetParentOf(n2);
+			if (n1.HasChild(n2))
+			{
+				return GetParentOf(n1);
+			}
+			else if (n2.HasChild(n1))
+			{
+				return GetParentOf(n2);
+			}
 
-			var result = GetFirstCommonParent(Root, n1, n2);
-			return (result == null) ? GetFirstCommonParent(Root, n2, n1) : result;
+			return GetFirstCommonParent(Root, n1, n2);
 		}
 
 		private BinaryTreeNodeS<T> GetFirstCommonParent(BinaryTreeNodeS<T> cur, BinaryTreeNodeS<T> n1, BinaryTreeNodeS<T> n2)
 		{
 			if (cur == null) return null;
 
-			var leftContains = Contains(cur.Left, n1);
-			var rightContains = Contains(cur.Right, n2);
-			if (leftContains && rightContains)
-			{
-				return cur;
-			}
-			else if (leftContains)
+			if (Contains(cur.Left, n1) && Contains(cur.Left, n2))
 			{
 				return GetFirstCommonParent(cur.Left, n1, n2);
 			}
-			else if (rightContains)
+			else if (Contains(cur.Right, n1) && Contains(cur.Right, n2))
 			{
 				return GetFirstCommonParent(cur.Right, n1, n2);
 			}
 
-			return null;
+			return cur;
 		}
 
 		public BinaryTreeNodeS<T> GetParentOf(BinaryTreeNodeS<T> node)
@@ -274,6 +274,70 @@ namespace Practice
 			if (Contains(cur.Right, node) == true) return true;
 
 			return false;
+		}
+
+		public bool IsSubTreeOf(BinaryTreeS<T> tree)
+		{
+			var subTreeList = ToLevelOrderList();
+			if (subTreeList == null) return false;
+
+			var node = tree.GetNode(Root.Value);
+			if (node == null) return false;
+
+			var q = new Queue<BinaryTreeNodeS<T>>();
+			var tmpList = new List<BinaryTreeNodeS<T>>();
+			var i = 0;
+			q.Enqueue(node);
+
+			while (q.Count > 0 && i < subTreeList.Count)
+			{
+				var n = q.Dequeue();
+				tmpList.Add(n);
+				if (subTreeList[i].Equals(tmpList[i]) == false) return false;
+
+				if (n.Left != null) q.Enqueue(n.Left);
+				if (n.Right != null) q.Enqueue(n.Right);
+			}
+
+			if (subTreeList.Count > tmpList.Count) return false;
+
+			return true;
+		}
+
+		private BinaryTreeNodeS<T> GetNode(T val)
+		{
+			return GetNode(Root, val);
+		}
+
+		private BinaryTreeNodeS<T> GetNode(BinaryTreeNodeS<T> node, T val)
+		{
+			if (node == null) return null;
+			if (node.Value.Equals(val)) return node;
+
+			var leftResult = GetNode(node.Left, val);
+			if (leftResult != null) return leftResult;
+
+			return GetNode(node.Right, val);
+		}
+
+		public List<BinaryTreeNodeS<T>> ToLevelOrderList()
+		{
+			if (Root == null) return null;
+			
+			var list = new List<BinaryTreeNodeS<T>>();
+			var q = new Queue<BinaryTreeNodeS<T>>();
+			q.Enqueue(Root);
+
+			while (q.Count > 0)
+			{
+				var node = q.Dequeue();
+				list.Add(node);
+
+				if (node.Left != null) q.Enqueue(node.Left);
+				if (node.Right != null) q.Enqueue(node.Right);
+			}
+
+			return list;
 		}
 	}
 }
