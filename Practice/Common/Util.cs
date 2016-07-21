@@ -17,5 +17,10 @@ namespace Practice
 		{
 			Console.WriteLine(str);
 		}
+
+		public static void PrintLn(int n)
+		{
+			Console.WriteLine("" + n);
+		}
 	}
 }

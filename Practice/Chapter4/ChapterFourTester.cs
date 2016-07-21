@@ -20,7 +20,7 @@ namespace Practice
 			{
 				var tree = GetSampleBST(q, o);
 			}
-			else if (q == 6 || q == 7)
+			else if (q == 6 || q == 7 || q == 8)
 			{
 				var tree = GetSampleBinaryTree(q, o);
 			}
@@ -463,7 +463,7 @@ namespace Practice
 				PrintLn();
 				PrintLn("First common parent of nodes " + n1.Value + " and " + n2.Value + " : " + resultStr);
 			}
-			if (question == 7)
+			else if (question == 7)
 			{
 				var node1 = new BinaryTreeNodeS<int>(1);
 				var node2 = new BinaryTreeNodeS<int>(2);
@@ -504,6 +504,49 @@ namespace Practice
 				var result = subTree.IsSubTreeOf(tree);
 
 				PrintLn("T2 is a subTree of T1 : " + result);
+			}
+			else if (question == 8)
+			{
+				var node1 = new BinaryTreeNodeS<int>(1);
+				var node2 = new BinaryTreeNodeS<int>(2);
+				var node3 = new BinaryTreeNodeS<int>(3);
+				var node4 = new BinaryTreeNodeS<int>(4);
+				var node5 = new BinaryTreeNodeS<int>(5);
+				var node6 = new BinaryTreeNodeS<int>(6);
+				var node7 = new BinaryTreeNodeS<int>(7);
+				var node8 = new BinaryTreeNodeS<int>(8);
+				var node9 = new BinaryTreeNodeS<int>(9);
+				var node10 = new BinaryTreeNodeS<int>(10);
+				var node11 = new BinaryTreeNodeS<int>(11);
+				var node12 = new BinaryTreeNodeS<int>(12);
+				var node13 = new BinaryTreeNodeS<int>(13);
+				var node14 = new BinaryTreeNodeS<int>(14);
+				var node15 = new BinaryTreeNodeS<int>(15);
+				var node16 = new BinaryTreeNodeS<int>(0);
+				var node17 = new BinaryTreeNodeS<int>(0);
+				var node18 = new BinaryTreeNodeS<int>(-1);
+
+				node1.Left = node2;
+				node1.Right = node3;
+				node2.Left = node4;
+				node2.Right = node5;
+				node3.Left = node6;
+				node3.Right = node7;
+				node4.Left = node8;
+				node4.Right = node9;
+				node5.Left = node10;
+				node5.Right = node11;
+				node6.Left = node12;
+				node6.Right = node13;
+				node7.Left = node14;
+				node7.Right = node15;
+				node8.Left = node16;
+				node8.Right = node17;
+				node9.Left = node18;
+
+				tree.Root = node1;
+
+				tree.PrintPathsThatSumTo(15);
 			}
 
 			return tree;

@@ -339,5 +339,39 @@ namespace Practice
 
 			return list;
 		}
+
+		public void PrintPathsThatSumTo(int n)
+		{
+			if (Root == null) return;
+
+			var q = new Queue<BinaryTreeNodeS<T>>();
+			q.Enqueue(Root);
+
+			while (q.Count > 0)
+			{
+				var node = q.Dequeue();
+				if (node.Left != null) q.Enqueue(node.Left);
+				if (node.Right != null) q.Enqueue(node.Right);
+				
+				PrintPathsThatSumTo(node, 0, n, "");
+			}
+		}
+
+		private void PrintPathsThatSumTo(BinaryTreeNodeS<T> node, int cur, int n, string str)
+		{
+			if (node == null) return;
+			
+			var nodeValue = (int)Convert.ChangeType(node.Value, TypeCode.Int32);
+			str += (nodeValue + "+");
+			var sum = nodeValue + cur;
+
+			if (sum == n)
+			{
+				PrintLn(str.Substring(0, str.Length - 1) + "=" + sum);
+			}
+
+			PrintPathsThatSumTo(node.Left, sum, n, str);
+			PrintPathsThatSumTo(node.Right, sum, n, str);
+		}
 	}
 }
