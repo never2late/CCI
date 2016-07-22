@@ -29,6 +29,18 @@ namespace Practice
 
 				PrintLn(n + " = " + result);
 			}
+			else if (q == 3)
+			{
+				int num = 5;
+				var result = QuestionThree(num);
+				if (result != null)
+				{
+					var nextSmallest = result[0];
+					var nextLargest = result[1];
+
+					PrintLn("Current : " + num + "\nNext Smallest : " + nextSmallest + "\nNext Largest : " + nextLargest);
+				}
+			}
 		}
 
 		private int QuestionOne(int n, int m, int i, int j)
@@ -90,6 +102,65 @@ namespace Practice
 			decString = sbDec.ToString();
 
 			return numString + "." + decString;
+		}
+
+		private int[] QuestionThree(int num)
+		{
+			var list = new int[2];
+
+			list[0] = GetNextSmallest(num);
+			list[1] = GetNextLargest(num);
+
+			return list;
+		}
+
+		private int GetNextSmallest(int num)
+		{
+			int startBit = 1;
+
+			while ((num & startBit) > 0)
+			{
+				startBit <<= 1;
+			}
+			while ((num & startBit) == 0)
+			{
+				if (startBit == 0) //already the smallest
+				{
+					return num;
+				}
+
+				startBit <<= 1;
+			}
+
+			var flipBit = startBit >> 1;
+			var nextSmallest = num ^ startBit;
+			nextSmallest = nextSmallest | flipBit;
+			
+			return nextSmallest;
+		}
+
+		private int GetNextLargest(int num)
+		{
+			int startBit = 1;
+			while ((num & startBit) > 0)
+			{
+				startBit <<= 1;
+			}
+			while ((num & startBit) == 0)
+			{
+				if (startBit == 0) 
+				{
+					return num << 1;
+				}
+
+				startBit <<= 1;
+			}
+
+			var tmpBit = startBit >> 1;
+			var nextLargest = num ^ tmpBit;
+			nextLargest = nextLargest | startBit;
+
+			return nextLargest;
 		}
 	}
 }
