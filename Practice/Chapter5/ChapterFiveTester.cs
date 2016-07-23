@@ -81,7 +81,7 @@ namespace Practice
 
 			while (true)
 			{
-				if (sbDec.Length >= 32) return "ERROR";
+				if (sbDec.Length > 32) return "ERROR";
 				dec = dec * 2;
 				if (dec > 1.0f)
 				{
