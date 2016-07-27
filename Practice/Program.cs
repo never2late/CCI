@@ -20,13 +20,18 @@ namespace Practice
 				var tester = new ChapterFiveTester();
 				tester.Test(question, option);
 			}
+			else if (chapter == 8)
+			{
+				var tester = new ChapterEightTester();
+				tester.Test(question, option);
+			}
 		}
 		
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 			
-			Test(5, 7, 0);
+			Test(8, 1, 1);
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 

@@ -49,6 +49,7 @@
     <Compile Include="Chapter4\ChapterFourTester.cs" />
     <Compile Include="Chapter5\BitManipulation.cs" />
     <Compile Include="Chapter5\ChapterFiveTester.cs" />
+    <Compile Include="Chapter8\ChapterEightTester.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\Util.cs" />
     <Compile Include="Model\BinaryTreeNodeS.cs" />
