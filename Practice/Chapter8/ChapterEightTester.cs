@@ -95,6 +95,12 @@ namespace Practice
 					PrintLn(permutation);
 				}
 			}
+			else if (q == 5)
+			{
+				int n = 5;
+
+				QuestionFive(n);
+			}
 		}
 		//1, 2, 3, 5, ... 
 		//f(n) = f(n-1) + f(n-2)
@@ -241,6 +247,62 @@ namespace Practice
 					GetPermutation(prev + c, comb, list);
 				}
 			}
+		}
+
+		public List<string> QuestionFive(int n)
+		{
+			if (n <= 0) return null;
+
+			var list = new List<string>();
+			var result = new List<List<int>>();
+
+			for (int i = 1; i <= n; i++)
+			{
+				GetParanthesisList(n, 0, i, result, new List<int>());
+			}
+
+			PrintLn("TOTAL OF : " + result.Count);
+
+			foreach (var intList in result)
+			{
+				foreach (var i in intList)
+				{
+					PrintParanthesis(i);
+				}
+
+				Print(", ");
+			}
+
+			return list;
+		}
+
+		private void GetParanthesisList(int n, int sum, int inc, List<List<int>> result, List<int> list)
+		{
+			sum += inc;
+			list.Add(inc);
+
+			if (sum == n)
+			{
+				result.Add(list);
+				return;
+			}
+
+			for (int i = 1; sum + i <= n; i++)
+			{
+				GetParanthesisList(n, sum, i, result, new List<int>(list));
+			}
+		}
+
+		private void PrintParanthesis(int n)
+		{
+			if (n <= 0) return;
+
+			var sb = new StringBuilder();
+
+			for (int i = 0; i < n; i++) sb.Append("(");
+			for (int i = 0; i < n; i++) sb.Append(")");
+
+			Print(sb.ToString());
 		}
 	}
 }
