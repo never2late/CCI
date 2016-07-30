@@ -50,57 +50,125 @@ namespace Practice
 					PrintLn(str);
 				}
 			}
-			if (q == 3)
-			{
-				var set = new List<int>();
-				int n = 4;
+            if (q == 3)
+            {
+                var set = new List<int>();
+                int n = 4;
 
-				for (int i = 0; i < n; i++)
-				{
-					set.Add(i);
-				}
+                for (int i = 0; i < n; i++)
+                {
+                    set.Add(i);
+                }
 
-				var subsets = QuestionThree(set);
-				var sb = new StringBuilder();
-				sb.Append("{");
-				foreach (var e in set)
-				{
-					sb.Append(e + ",");
-				}
-				sb.Remove(sb.Length - 1, 1);
-				sb.Append("}");
+                var subsets = QuestionThree(set);
+                var sb = new StringBuilder();
+                sb.Append("{");
+                foreach (var e in set)
+                {
+                    sb.Append(e + ",");
+                }
+                sb.Remove(sb.Length - 1, 1);
+                sb.Append("}");
 
-				PrintLn("Subsets of " + sb.ToString());
+                PrintLn("Subsets of " + sb.ToString());
 
-				foreach (var subset in subsets)
-				{
-					if (string.IsNullOrEmpty(subset) == true) PrintLn("{null}");
-					else
-					{
-						var str = subset.Substring(0, subset.Length - 1);
-						PrintLn("{" + str + "}");
-					}
-				}
-				PrintLn("TOTAL OF " + subsets.Count);
-			}
-			else if (q == 4)
-			{
-				var str = "ABCD";
-				var list = QuestionFour(str);
+                foreach (var subset in subsets)
+                {
+                    if (string.IsNullOrEmpty(subset) == true) PrintLn("{null}");
+                    else
+                    {
+                        var str = subset.Substring(0, subset.Length - 1);
+                        PrintLn("{" + str + "}");
+                    }
+                }
+                PrintLn("TOTAL OF " + subsets.Count);
+            }
+            else if (q == 4)
+            {
+                var str = "ABCD";
+                var list = QuestionFour(str);
 
-				PrintLn("Permutation of " + str + ", total of : " + list.Count);
+                PrintLn("Permutation of " + str + ", total of : " + list.Count);
 
-				foreach (var permutation in list)
-				{
-					PrintLn(permutation);
-				}
-			}
-			else if (q == 5)
-			{
-				int n = 5;
+                foreach (var permutation in list)
+                {
+                    PrintLn(permutation);
+                }
+            }
+            else if (q == 5)
+            {
+                int n = 5;
 
-				QuestionFive(n);
-			}
+                QuestionFive(n);
+            }
+            else if (q == 6)
+            {
+                int[,] colors = {
+                    { 1, 1, 0, 1, 1 },
+                    { 1, 0, 0, 0, 1 },
+                    { 0, 0, 3, 0, 0 },
+                    { 1, 0, 0, 0, 1 },
+                    { 1, 1, 0, 1, 1 }
+                };
+
+                Fill(colors, 2, 0, 2);
+
+                int width = colors.GetLength(0);
+                int height = colors.GetLength(1);
+                var sb = new StringBuilder();
+                for (int y = 0; y < height; y++)
+                {
+                    sb.Append("{ ");
+                    for (int x = 0; x < width; x++)
+                    {
+                        sb.Append(colors[y, x] + ", ");
+                    }
+                    sb.Append("}\n");
+                }
+
+                PrintLn(sb.ToString());
+            }
+            else if (q == 7)
+            {
+                int n = 11; //cents
+                var ways = QuestionSeven(n);
+
+                foreach (var way in ways)
+                {
+                    var sb = new StringBuilder();
+                    foreach (var coin in way)
+                    {
+                        sb.Append(coin + " + ");
+                    }
+
+                    sb.Remove(sb.Length - 2, 2);
+                    sb.Append(" = " + n);
+                    PrintLn(sb);
+                }
+
+                PrintLn("Number of ways of representing " + n + " cents : " + ways.Count);
+            }
+            else if (q == 8)
+            {
+                var allWays = QuestionEight();
+                var sb = new StringBuilder();
+
+                foreach (var way in allWays)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        for (int i = 0; i < 8; i++)
+                        {
+                            sb.Append(way[j, i] + " ");
+                        }
+                        sb.Append("\n");
+                    }
+                    sb.Append("\n");
+                }
+
+                PrintLn(sb);
+                PrintLn("Number of solutions : " + allWays.Count);
+            }
 		}
 		//1, 2, 3, 5, ... 
 		//f(n) = f(n-1) + f(n-2)
@@ -304,5 +372,161 @@ namespace Practice
 
 			Print(sb.ToString());
 		}
-	}
+
+        public void Fill(int[,] colors, int x, int y, int color)
+        {
+            int curColor = colors[y,x];
+
+            Fill(colors, x, y, color, curColor);
+        }
+
+        private void Fill(int[,] colors, int x, int y, int color, int curColor)
+        {
+            int yLen = colors.GetLength(0);
+            int xLen = colors.GetLength(1);
+            if (y >= yLen || x >= xLen || x < 0 || y < 0) return;
+            if (colors[y,x] != curColor) return;
+
+            colors[y,x] = color;
+
+            Fill(colors, x + 1, y, color, curColor);
+            Fill(colors, x, y + 1, color, curColor);
+            Fill(colors, x - 1, y, color, curColor);
+            Fill(colors, x, y - 1, color, curColor);
+        }
+
+        public List<List<int>> QuestionSeven(int n)
+        {
+            if (n <= 0) return new List<List<int>>();
+
+            return GetCoinCombinations(n);
+        }
+
+        private List<List<int>> GetCoinCombinations(int n)
+        {
+            var result = new List<List<int>>();
+            var coinList = new List<int>();
+
+            coinList.Add(25);
+            coinList.Add(10);
+            coinList.Add(5);
+            coinList.Add(1);
+
+            var cnt = 0;
+
+            for (int i = 0; i < coinList.Count; i++)
+            {
+                var coin = coinList[i];
+                cnt += GetCoinCombinations(n, coin, i, result, coinList, new List<int>());
+            }
+
+            PrintLn("CNT : " + cnt);
+            return result;
+        }
+
+        private int GetCoinCombinations(int cur, int coin, int coinIndex, List<List<int>> result, List<int> coinList, List<int> list)
+        {
+            if (cur - coin < 0) return 0;
+
+            cur -= coin;
+            list.Add(coin);
+
+            if (cur == 0)
+            {
+                result.Add(list);
+                return 1;
+            }
+
+            var cnt = 0;
+            for (int i = coinIndex; i < coinList.Count; i++)
+            {
+                cnt += GetCoinCombinations(cur, coinList[i], i, result, coinList, new List<int>(list));
+            }
+
+            return cnt;
+        }
+
+        public List<int[,]> QuestionEight()
+        {
+            var result = new List<int[,]>();
+            var chessBoard = new int[8, 8];
+
+            placeAllQueens(chessBoard, 0, 0, 0, result);
+
+            return result;
+        }
+
+        private void placeAllQueens(int[,] chessBoard, int x, int y, int cnt, List<int[,]> result)
+        {
+            if (cnt == 8)
+            {
+                result.Add(chessBoard);
+                return;
+            } 
+            if (x >= 8 || y >= 8) return;
+
+            if (canPlaceQueen(chessBoard, x, y) == true)
+            {
+                chessBoard[y, x] = 1;
+                var copy = new int[8, 8];
+                Array.Copy(chessBoard, copy, chessBoard.Length);
+                cnt++;
+
+                placeAllQueens(copy, 0, y + 1, cnt, result);
+                chessBoard[y, x] = 0;
+                cnt--;
+            }
+
+            placeAllQueens(chessBoard, x + 1, y, cnt, result);
+        }
+
+        private bool canPlaceQueen(int[,] chessBoard, int x, int y)
+        {
+            if (x < 0 || y < 0 || x >= 8 || y >= 8) return false;
+
+            int i = 0, j = 0;
+            for (j = 0; j < 8; j++)
+            {
+                if (chessBoard[j, x] == 1) return false;
+            }
+            i = x + 1;
+            j = y - 1;
+            while (true)
+            {
+                if (i >= 8 || j < 0) break;
+                if (chessBoard[j, i] == 1) return false;
+                i++;
+                j--;
+            }
+            i = x - 1;
+            j = y + 1;
+            while (true)
+            {
+                if (i < 0 || j >= 8) break;
+                if (chessBoard[j, i] == 1) return false;
+                i--;
+                j++;
+            }
+            i = x - 1;
+            j = y - 1;
+            while (true)
+            {
+                if (i < 0 || j < 0) break;
+                if (chessBoard[j, i] == 1) return false;
+                i--;
+                j--;
+            }
+            i = x + 1;
+            j = y + 1;
+            while (true)
+            {
+                if (i >= 8 || j >= 8) break;
+                if (chessBoard[j, i] == 1) return false;
+                i++;
+                j++;
+            }
+
+            return true;
+        }
+    }
 }

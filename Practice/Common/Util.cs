@@ -13,10 +13,20 @@ namespace Practice
 			Console.Write(str);
 		}
 
-		public static void PrintLn(String str = "")
+        public static void Print(StringBuilder sb)
+        {
+            Print(sb.ToString());
+        }
+
+        public static void PrintLn(String str = "")
 		{
 			Console.WriteLine(str);
 		}
+
+        public static void PrintLn(StringBuilder sb)
+        {
+            PrintLn(sb.ToString());
+        }
 
 		public static void PrintLn(int n)
 		{
