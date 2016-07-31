@@ -50,8 +50,10 @@
     <Compile Include="Chapter5\BitManipulation.cs" />
     <Compile Include="Chapter5\ChapterFiveTester.cs" />
     <Compile Include="Chapter8\ChapterEightTester.cs" />
+    <Compile Include="Chapter9\ChapterNineTester.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\Util.cs" />
+    <Compile Include="Common\UtilExt.cs" />
     <Compile Include="Model\BinaryTreeNodeS.cs" />
     <Compile Include="Model\EdgeS.cs" />
     <Compile Include="Model\NodeS.cs" />

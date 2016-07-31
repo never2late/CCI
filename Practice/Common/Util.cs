@@ -32,5 +32,5 @@ namespace Practice
 		{
 			Console.WriteLine("" + n);
 		}
-	}
+    }
 }

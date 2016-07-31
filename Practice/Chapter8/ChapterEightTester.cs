@@ -348,7 +348,7 @@ namespace Practice
 		{
 			sum += inc;
 			list.Add(inc);
-
+            string s;
 			if (sum == n)
 			{
 				result.Add(list);

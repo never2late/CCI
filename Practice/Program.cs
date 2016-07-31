@@ -10,28 +10,33 @@ namespace Practice
 	{
 		private static void Test(int chapter, int question = 0, int option = 0)
 		{
-			if (chapter == 4)
-			{
-				var tester = new ChapterFourTester();
-				tester.Test(question, option);
-			}
-			else if (chapter == 5)
-			{
-				var tester = new ChapterFiveTester();
-				tester.Test(question, option);
-			}
-			else if (chapter == 8)
-			{
-				var tester = new ChapterEightTester();
-				tester.Test(question, option);
-			}
+            if (chapter == 4)
+            {
+                var tester = new ChapterFourTester();
+                tester.Test(question, option);
+            }
+            else if (chapter == 5)
+            {
+                var tester = new ChapterFiveTester();
+                tester.Test(question, option);
+            }
+            else if (chapter == 8)
+            {
+                var tester = new ChapterEightTester();
+                tester.Test(question, option);
+            }
+            else if (chapter == 9)
+            {
+                var tester = new ChapterNineTester();
+                tester.test(question, option);
+            }
 		}
 		
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 			
-			Test(8, 8, 0);
+			Test(9, 0, 4);
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 
