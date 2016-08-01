@@ -13,23 +13,25 @@ namespace Practice
         {
             if (q == 0)
             {
-                int[] n1 = { 6, 5, 3, 1, 8, 7, 2, 4, 9, 0 };
-                int[] n2 = { 0 };
-                int[] n3 = { 6, 5, 5 };
-                int[] n4 = { 5, 5, 5, 5, 5};
-                int[] n5 = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-                int[] n6 = { 3, 7, 8, 5, 2, 1, 9, 5, 4};
-                int[] n7 = { 9, 9, 1, 1, 5, 5, 3, 3, 0, 0 };
+				int[] n1 = { 6, 5, 3, 1, 8, 7, 2, 4, 9, 0 };
+				int[] n2 = { 0 };
+				int[] n3 = { 6, 5, 5 };
+				int[] n4 = { 5, 5, 5, 5, 5 };
+				int[] n5 = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+				int[] n6 = { 3, 7, 8, 5, 2, 1, 9, 5, 4 };
+				int[] n7 = { 9, 9, 1, 1, 5, 5, 3, 3, 0, 0 };
+				int[] n8 = { 6, 5, 3, 1, 8 };
                 List<int[]> list = new List<int[]>();
-                list.Add(n1);
-                list.Add(n2);
-                list.Add(n3);
-                list.Add(n4);
-                list.Add(n5);
-                list.Add(n6);
-                list.Add(n7);
-                //bubble sort
-                if (o == 0)
+				list.Add(n1);
+				list.Add(n2);
+				list.Add(n3);
+				list.Add(n4);
+				list.Add(n5);
+				list.Add(n6);
+				list.Add(n7);
+				list.Add(n8);
+				//bubble sort
+				if (o == 0)
                 {
                     PrintLn("======= Performing Bubble Sort =======");
                     foreach (var n in list)
@@ -79,7 +81,7 @@ namespace Practice
                     foreach (var n in list)
                     {
                         PrintLn("Before : " + n.toString());
-                        quickSort(n);
+                        quickSort(n, 0);
                         PrintLn("After : " + n.toString());
                     }
                 }
@@ -174,23 +176,56 @@ namespace Practice
             return tmp;
         }
 
-        public void quickSort(int[] n)
+        public void quickSort(int[] n, int o)
         {
-            quickSort(n, 0, n.Length - 1);
+			if (o == 0)
+			{
+				quickSort(n, 0, n.Length - 1);
+			}
+			else
+			{
+				quickSortFaster(n, 0, n.Length - 1);
+			}
         }
-        //6, 5, 3, 1, 8, 7, 2, 4
+		//6, 5, 3, 1, 8, 7, 2, 4
+		private void quickSort(int[] n, int s, int e)
+		{
+			if (s >= e) return;
+
+			int p = partition(n, s, e);
+			quickSort(n, s, p - 1);
+			quickSort(n, p + 1, e);
+		}
+		//6, 5, 3, 1, 8
+		private int partition(int[] n, int s, int e)
+		{
+			int piv = n[e];
+			int p = e;
+			for (int i = 0; i < p; i++)
+			{
+				if (n[i] > piv)
+				{
+					swap(n, i, p - 1);
+					swap(n, p, p - 1);
+					i--;
+					p--;
+				}
+			}
+
+			return p;
+		}
 
         //5, 4, 3, 2, 1
-        private void quickSort(int[] n, int s, int e)
+        private void quickSortFaster(int[] n, int s, int e)
         {
             if (s >= e) return;
 
-            int p = partition(n, s, e);
-            quickSort(n, s, p);
-            quickSort(n, p + 1, e);
+            int p = partitionFaster(n, s, e);
+			quickSortFaster(n, s, p);
+			quickSortFaster(n, p + 1, e);
         }
 
-        private int partition(int[] n, int s, int e)
+        private int partitionFaster(int[] n, int s, int e)
         {
             int pivot = n[s];
             int i = s - 1, j = e + 1;
