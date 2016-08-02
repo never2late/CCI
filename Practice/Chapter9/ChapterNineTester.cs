@@ -110,11 +110,11 @@ namespace Practice
             {
                 string[] s = { "silent", "abcdef", "kfc", "listen", "tenlis", "a" };
                 
-                var result = QuestionTwo(s);
+                QuestionTwo(s);
                 var sb = new StringBuilder();
-                for (int i = 0; i < result.Length; i++)
+                for (int i = 0; i < s.Length; i++)
                 {
-                    sb.Append(result[i] + ", ");
+                    sb.Append(s[i] + ", ");
                 }
 
                 PrintLn(sb);
@@ -345,36 +345,25 @@ namespace Practice
             return p;
         }
 
-        public string[] QuestionTwo(string[] s)
+        public void QuestionTwo(string[] s)
         {
-            var result = new string[s.Length];
-            var dict = new Dictionary<string, List<string>>();
-
-            for (int i = 0; i < s.Length; i++)
-            {
-                char[] c = s[i].ToArray();
-                quickSort(c);
-                var sort = new string(c);
-                if (dict.ContainsKey(sort) == false)
-                {
-                    dict[sort] = new List<string>();
-                }
-
-                dict[sort].Add(s[i]);
-            }
-
-            int index = 0;
-            foreach (var sort in dict.Keys)
-            {
-                var list = dict[sort];
-                foreach (var str in list)
-                {
-                    result[index++] = str;
-                }
-            }
-
-            return result;
+			Array.Sort(s, new AnagramComparer());
         }
+
+		private class AnagramComparer : IComparer<String>
+		{
+			public int Compare(String s1, String s2)
+			{
+				var c1 = s1.ToArray();
+				var c2 = s2.ToArray();
+				Array.Sort(c1);
+				Array.Sort(c2);
+				var a1 = new string(c1);
+				var a2 = new string(c2);
+
+				return a1.CompareTo(a2);
+			}
+		}
 
         public void quickSort(char[] n)
         {
