@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chapter10\ChapterTenTester.cs" />
     <Compile Include="Chapter4\AdjListS.cs" />
     <Compile Include="Chapter4\BinarySearchTreeS.cs" />
     <Compile Include="Chapter4\BinaryTreeS.cs" />
