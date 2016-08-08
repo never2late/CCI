@@ -168,11 +168,15 @@ namespace Practice
 
                 PrintLn(sb);
                 PrintLn("Number of solutions : " + allWays.Count);
+
+                var dict = new Dictionary<string, string>();
+                string a = "";
+                var b = a.ToCharArray();
             }
 		}
-		//1, 2, 3, 5, ... 
-		//f(n) = f(n-1) + f(n-2)
-		private uint QuestionOne(uint n)
+        //1, 2, 3, 5, ... 
+        //f(n) = f(n-1) + f(n-2)
+        private uint QuestionOne(uint n)
 		{
 			if (n == 0) return 1;
 			if (n == 1) return 2;
