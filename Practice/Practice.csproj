@@ -46,6 +46,9 @@
     <Compile Include="Chapter10\ChapterTenTester.cs" />
     <Compile Include="Chapter12\ChapterTwelveTester.cs" />
     <Compile Include="Chapter1\ChapterOneTester.cs" />
+    <Compile Include="Chapter2\ChapterTwoTester.cs" />
+    <Compile Include="Chapter2\LinkedListS.cs" />
+    <Compile Include="Chapter2\Node.cs" />
     <Compile Include="Chapter4\AdjListS.cs" />
     <Compile Include="Chapter4\BinarySearchTreeS.cs" />
     <Compile Include="Chapter4\BinaryTreeS.cs" />

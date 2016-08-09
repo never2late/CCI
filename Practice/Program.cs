@@ -15,6 +15,11 @@ namespace Practice
 				var tester = new ChapterOneTester();
 				tester.Test(question, option);
 			}
+			else if (chapter == 2)
+            {
+                var tester = new ChapterTwoTester();
+                tester.Test(question, option);
+            }
 			else if (chapter == 4)
 			{
 				var tester = new ChapterFourTester();
@@ -51,7 +56,7 @@ namespace Practice
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 			
-			Test(1, 1, 1);
+			Test(2, 1, 1);
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 
