@@ -193,30 +193,47 @@ namespace Practice
 			return new Tuple<Line, int>(result, max);
 		}
 
-        public int QuestionSeven(int k)
-        {
-            if (k <= 0) return 0;
+		public int QuestionSeven(int k)
+		{
+			if (k <= 0) return 0;
 
-            var hs = new HashSet<int>();
-            QuestionSeven(0, 0, 0, 0, k - 1, hs);
-            var arr = hs.ToArray();
-            Array.Sort(arr);
+			var val = 1;
+			var q3 = new Queue<int>();
+			var q5 = new Queue<int>();
+			var q7 = new Queue<int>();
+			q3.Enqueue(3);
+			q5.Enqueue(5);
+			q7.Enqueue(7);
 
-            return arr[k - 1];
-        }
+			for (--k; k > 0; k--)
+			{
+				var peek3 = q3.Peek();
+				var peek5 = q5.Peek();
+				var peek7 = q7.Peek();
+				val = Math.Min(Math.Min(peek3, peek5), peek7);
 
-        public void QuestionSeven(int t, int f, int s, int cnt, int k, HashSet<int> hs)
-        {
-            var num = GetPow(3, t) * GetPow(5, f) * GetPow(7, s);
-            if (num < 0) return;
-            hs.Add(num);
-            if (cnt == k) return;
+				if (val == peek3)
+				{
+					q3.Dequeue();
+					q3.Enqueue(val * 3);
+					q5.Enqueue(val * 5);
+					q7.Enqueue(val * 7);
+				}
+				else if (val == peek5)
+				{
+					q5.Dequeue();
+					q5.Enqueue(val * 5);
+					q7.Enqueue(val * 7);
+				}
+				else
+				{
+					q7.Dequeue();
+					q7.Enqueue(val * 7);
+				}
+			}
 
-            cnt++;
-            QuestionSeven(t + 1, f, s, cnt, k, hs);
-            QuestionSeven(t, f + 1, s, cnt, k, hs);
-            QuestionSeven(t, f, s + 1, cnt, k, hs);
-        }
+			return val;
+		}
 
         private int GetPow(int n, int p)
         {

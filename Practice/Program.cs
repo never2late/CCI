@@ -10,7 +10,12 @@ namespace Practice
 	{
 		private static void Test(int chapter, int question = 0, int option = 0)
 		{
-			if (chapter == 4)
+			if (chapter == 1)
+			{
+				var tester = new ChapterOneTester();
+				tester.Test(question, option);
+			}
+			else if (chapter == 4)
 			{
 				var tester = new ChapterFourTester();
 				tester.Test(question, option);
@@ -35,13 +40,18 @@ namespace Practice
 				var tester = new ChapterTenTester();
 				tester.test(question, option);
 			}
+			else if (chapter == 12)
+			{
+				var tester = new ChapterTwelveTester();
+				tester.test(question, option);
+			}
 		}
 		
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 			
-			Test(10, 7, 0);
+			Test(1, 1, 1);
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 
