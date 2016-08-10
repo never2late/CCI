@@ -83,7 +83,7 @@ namespace Practice
                     for (int j = 0; j < arr1.GetLength(1); j++)
                     {
                         arr1[i, j] = c++;
-                        Print(arr1[i,j] + "");
+                        Print(arr1[i, j] + "");
                     }
                     PrintLn("");
                 }
@@ -98,6 +98,70 @@ namespace Practice
                         Print(arr1[i, j] + "");
                     }
                     PrintLn("");
+                }
+            }
+            else if (q == 7)
+            {
+                int m = 12;
+                int n = 7;
+                int[,] matrix = new int[n, m];
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < m; j++)
+                    {
+                        matrix[i, j] = 1;
+                    }
+                }
+
+                //matrix[0, 0] = 0;
+                //matrix[2, 4] = 0;
+                matrix[1, 1] = 0;
+                matrix[3, 5] = 0;
+                matrix[5, 10] = 0;
+                //matrix[1, 3] = 0;
+
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        Print(matrix[i, j] + "");
+                    }
+                    PrintLn("");
+                }
+
+                QuestionSeven(matrix);
+
+                PrintLn("===== AFTER =====");
+
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        Print(matrix[i, j] + "");
+                    }
+                    PrintLn("");
+                }
+            }
+            else if (q == 8)
+            {
+                string[] arr = {
+                    "waterbottle", "erbottlewat",
+                    "aaaaaaaaaaa", "aaaaaaaaaaa",
+                    "aaaabbbbcccc", "bbccccaaaabb",
+                    "abcdefg", "efgabcd",
+                    "aaaaaaaaaaa", "aaaaaaaaaab",
+                    "aaaabbbbcccc", "bbccccdaaabb",
+                    "abcdefg", "!fgabcd",
+                    "waterbottle", "erbottlewa",
+                };
+
+                for (int i = 0; i < arr.Length - 1; i+=2)
+                {
+                    var s1 = arr[i];
+                    var s2 = arr[i + 1];
+                    var result = QuestionEight(s1, s2);
+
+                    PrintLn(s1 + " , " + s2 + " - isRotation : " + result);
                 }
             }
 		}
@@ -290,6 +354,55 @@ namespace Practice
             }
 
             return result;
+        }
+
+        private void QuestionSeven(int[,] matrix)
+        {
+            var m = matrix.GetLength(1);
+            var n = matrix.GetLength(0);
+            var zeroRow = new bool[n];
+            var zeroCol = new bool[m];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (matrix[i, j] == 0)
+                    {
+                        zeroRow[i] = true;
+                        zeroCol[j] = true;
+                    }
+                }
+            }
+
+            for (int i = 0; i < zeroRow.Length; i++)
+            {
+                if (zeroRow[i] == true)
+                    for (int k = 0; k < m; k++) matrix[i, k] = 0;
+            }
+
+            for (int j = 0; j < zeroCol.Length; j++)
+            {
+                if (zeroCol[j] == true)
+                    for (int k = 0; k < n; k++) matrix[k, j] = 0;
+            }
+        }
+
+        private bool QuestionEight(String s1, String s2)
+        {
+            if (string.IsNullOrEmpty(s1) == true || string.IsNullOrEmpty(s2) == true || s1.Length != s2.Length) return false;
+
+            return isSubstring(s1, s2 + s2);
+        }
+
+        private bool isSubstring(String s1, String s2)
+        {
+            for (int i = 0; i < s1.Length; i++)
+            {
+                if (s2.Substring(i, s1.Length).Equals(s1) == true) return true;
+            }
+
+            return false;
         }
 	}
 }
