@@ -76,5 +76,35 @@ namespace Practice.Common
 
             return sb.ToString();
         }
+
+        public static string toString(this StackS s)
+        {
+            if (s == null || s.top == null) return "";
+
+            var sb = new StringBuilder();
+            for (var node = s.top; node != null; node = node.next)
+            {
+                sb.Append(node.value + "->");
+            }
+            sb.Remove(sb.Length - 2, 2);
+            sb.Append("\nTop : " + s.top.value);
+
+            return sb.ToString();
+        }
+
+        public static string toString(this QueueS q)
+        {
+            if (q == null || q.head == null) return "";
+
+            var sb = new StringBuilder();
+            for (Node node = q.head; node != null; node = node.next)
+            {
+                sb.Append(node.value + "->");
+            }
+            sb.Remove(sb.Length - 2, 2);
+            sb.Append("\nHead : " + q.head.value + " / Tail : " + q.tail.value);
+
+            return sb.ToString();
+        }
     }
 }
