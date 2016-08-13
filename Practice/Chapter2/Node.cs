@@ -9,6 +9,7 @@ namespace Practice
     public class Node
     {
         public int value { get; set; }
+        public int min { get; set; }
         public Node next { get; set; }
         public Node prev { get; set; }
 

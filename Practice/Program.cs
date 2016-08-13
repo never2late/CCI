@@ -61,7 +61,7 @@ namespace Practice
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 			
-			Test(3, 1, 0);
+			Test(3, 6, 0);
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 

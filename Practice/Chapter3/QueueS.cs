@@ -35,4 +35,43 @@ namespace Practice
             return ret;
         }
     }
+
+    public class Queue5
+    {
+        private StackS enqStack;
+        private StackS deqStack;
+
+        public Queue5()
+        {
+            enqStack = new StackS();
+            deqStack = new StackS();
+        }
+
+        public int peek()
+        {
+            if (enqStack.count == 0 && deqStack.count == 0) return -1;
+            if (deqStack.count == 0)
+            {
+                while (enqStack.count > 0) deqStack.push(enqStack.pop());
+            }
+
+            return deqStack.peek();
+        }
+
+        public void enq(int v)
+        {
+            enqStack.push(v);
+        }
+
+        public int deq()
+        {
+            if (enqStack.count == 0 && deqStack.count == 0) return -1;
+            if (deqStack.count == 0)
+            {
+                while (enqStack.count > 0) deqStack.push(enqStack.pop());
+            }
+
+            return deqStack.pop();
+        }
+    }
 }

@@ -87,7 +87,7 @@ namespace Practice.Common
                 sb.Append(node.value + "->");
             }
             sb.Remove(sb.Length - 2, 2);
-            sb.Append("\nTop : " + s.top.value);
+            sb.Append("\nTop : " + s.top.value + " - Min : " + s.min());
 
             return sb.ToString();
         }
