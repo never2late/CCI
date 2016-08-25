@@ -69,12 +69,13 @@ namespace Practice
                     adjList.AddEdge(0, 2);
                     adjList.AddEdge(1, 3);
                     adjList.AddEdge(1, 4);
-                    adjList.AddEdge(2, 5);
-                    adjList.AddEdge(2, 6);
-                    adjList.AddEdge(4, 7);
+                    adjList.AddEdge(2, 3);
+					adjList.AddEdge(3, 5);
+					//adjList.AddEdge(2, 6);
+					//adjList.AddEdge(4, 7);
 
-                    //adjList.Print();
-                    adjList.BreadthFirstSearch();
+					//adjList.Print();
+					adjList.BreadthFirstSearch();
                 }
             }
             else if (question == 2)

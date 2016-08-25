@@ -80,6 +80,8 @@ namespace Practice.Chapter4
 
 		public void DepthFirstSearch(int vertex, HashSet<int> hashSet)
 		{
+			if (hashSet.Contains(vertex) == true) return;
+
 			hashSet.Add(vertex);
 			var edgeList = vertexList[vertex];
 			
@@ -87,8 +89,6 @@ namespace Practice.Chapter4
 
 			foreach (var edge in edgeList)
 			{
-				if (hashSet.Contains(edge.Vertex) == true) continue;
-
 				DepthFirstSearch(edge.Vertex, hashSet);
 			}
 		}
@@ -99,8 +99,10 @@ namespace Practice.Chapter4
 
 			PrintLn("Performing Breadth First Search...\n");
 
+			var hs = new HashSet<int>();
 			var q = new Queue<int>();
 			q.Enqueue(0);
+			hs.Add(0);
 
             while (q.Count > 0)
             {
@@ -111,7 +113,9 @@ namespace Practice.Chapter4
 
                 foreach (var edge in edgeList)
                 {
+					if (hs.Contains(edge.Vertex) == true) continue;
                     q.Enqueue(edge.Vertex);
+					hs.Add(edge.Vertex);
                 }
             }
         }
