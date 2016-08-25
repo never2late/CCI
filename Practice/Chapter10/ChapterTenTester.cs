@@ -299,6 +299,10 @@ namespace Practice
 			if (m == float.PositiveInfinity) return float.PositiveInfinity;
 
 			return p.y - m * p.x;
+
+
 		}
-	}
+
+        
+    }
 }
