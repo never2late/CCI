@@ -49,20 +49,21 @@ namespace Practice.Chapter4
             var q = new Queue<int>();
             var visitedSet = new HashSet<int>();
             q.Enqueue(from);
+			visitedSet.Add(from);
 
             while (q.Count > 0)
             {
                 var vertex = q.Dequeue();
                 var edgeList = vertexList[vertex];
-                visitedSet.Add(vertex);
-
+				
                 foreach (var edge in edgeList)
                 {
                     if (visitedSet.Contains(edge.Vertex) == true) continue;
                     if (edge.Vertex == to) return true;
 
                     q.Enqueue(edge.Vertex);
-                }
+					visitedSet.Add(vertex);
+				}
             }
 
             return false;

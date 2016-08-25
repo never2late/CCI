@@ -56,12 +56,20 @@ namespace Practice
                 tester.test(question, option);
             }
 		}
-		
+
+		public static void TestSolution()
+		{
+			var solution = new Solution();
+			var param = new int[5, 2] { { 0, 1 }, { 0, 2 }, { 0, 3 }, { 3, 4 }, { 4, 5 } };
+			solution.FindMinHeightTrees(6, param);
+		}
+
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
-			
-			Test(4, -1, 2);
+
+			//Test(4, 2, 1);
+			TestSolution();
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 

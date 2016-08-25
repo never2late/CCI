@@ -103,22 +103,22 @@ namespace Practice
                 {
                     adjList = new AdjListS(10);
 
-                    adjList.AddEdge(0, 1);
-                    adjList.AddEdge(0, 2);
-                    adjList.AddEdge(0, 3);
-                    var isValidPath = adjList.IsValidPathByBreadthFirstSearch(0, 10);
-                    PrintLn("IsValidPath - Breadth First: " + isValidPath);
+					adjList.AddEdge(0, 1);
+					adjList.AddEdge(0, 2);
+					adjList.AddEdge(0, 3);
+					var isValidPath = adjList.IsValidPathByBreadthFirstSearch(0, 10);
+					PrintLn("IsValidPath - Breadth First: " + isValidPath);
 
-                    adjList.AddEdge(3, 4);
-                    adjList.AddEdge(4, 5);
-                    adjList.AddEdge(5, 6);
-                    adjList.AddEdge(6, 7);
-                    adjList.AddEdge(7, 8);
-                    adjList.AddEdge(8, 9);
-                    isValidPath = adjList.IsValidPathByBreadthFirstSearch(0, 9);
-                    PrintLn("IsValidPath - Breadth First: " + isValidPath);
-                }
-            }
+					adjList.AddEdge(3, 4);
+					adjList.AddEdge(4, 5);
+					adjList.AddEdge(5, 6);
+					adjList.AddEdge(6, 7);
+					adjList.AddEdge(7, 8);
+					adjList.AddEdge(8, 9);
+					isValidPath = adjList.IsValidPathByBreadthFirstSearch(0, 9);
+					PrintLn("IsValidPath - Breadth First: " + isValidPath);
+				}
+			}
 
 			return adjList;
 		}
