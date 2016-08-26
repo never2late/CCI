@@ -489,13 +489,50 @@ namespace Practice
 				tree.Root = node1;
 				tree.PrintLevelOrder();
 
-				var n1 = node8;
-				var n2 = node4;
+                int n = 15, cnt = 1;
+                BinaryTreeNodeS<int> n1 = null;
+                BinaryTreeNodeS<int> n2 = null;
+                for (int i = 1; i <= n; i++)
+                {
+                    if (i == 1) n1 = node1;
+                    else if (i == 2) n1 = node2;
+                    else if (i == 3) n1 = node3;
+                    else if (i == 4) n1 = node4;
+                    else if (i == 5) n1 = node5;
+                    else if (i == 6) n1 = node6;
+                    else if (i == 7) n1 = node7;
+                    else if (i == 8) n1 = node8;
+                    else if (i == 9) n1 = node9;
+                    else if (i == 10) n1 = node10;
+                    else if (i == 11) n1 = node11;
+                    else if (i == 12) n1 = node12;
+                    else if (i == 13) n1 = node13;
+                    else if (i == 14) n1 = node14;
+                    else if (i == 15) n1 = node15;
 
-				var firstCommonParent = tree.GetFirstCommonParent(n1, n2);
-				var resultStr = (firstCommonParent == null) ? "none" : firstCommonParent.Value + "";
-				PrintLn();
-				PrintLn("First common parent of nodes " + n1.Value + " and " + n2.Value + " : " + resultStr);
+                    for (int j = 1; j <= n; j++)
+                    {
+                        if (j == 1) n2 = node1;
+                        else if (j == 2) n2 = node2;
+                        else if (j == 3) n2 = node3;
+                        else if (j == 4) n2 = node4;
+                        else if (j == 5) n2 = node5;
+                        else if (j == 6) n2 = node6;
+                        else if (j == 7) n2 = node7;
+                        else if (j == 8) n2 = node8;
+                        else if (j == 9) n2 = node9;
+                        else if (j == 10) n2 = node10;
+                        else if (j == 11) n2 = node11;
+                        else if (j == 12) n2 = node12;
+                        else if (j == 13) n2 = node13;
+                        else if (j == 14) n2 = node14;
+                        else if (j == 15) n2 = node15;
+
+                        var firstCommonParent = tree.GetFirstCommonParent(n1, n2);
+                        var resultStr = (firstCommonParent == null) ? "none" : firstCommonParent.Value + "";
+                        PrintLn((cnt++) + ": First common parent of nodes " + n1.Value + " and " + n2.Value + " : " + resultStr);
+                    }
+                }
 			}
 			else if (question == 7)
 			{
@@ -586,4 +623,30 @@ namespace Practice
 			return tree;
 		}
 	}
+}
+
+public Node getInOrderSuccessor(Node node)
+{
+    if (node == null) return null;
+    if (node.parent == null || node.right != null)
+    {
+        return getLeftMost(node.right);
+    }
+
+    var cur = node;
+    while (node.parent != null)
+    {
+        node = node.parent;
+        if (node.left == cur) return node;
+        cur = node;
+    }
+
+    return null;
+}
+
+private Node getLeftMost(Node node)
+{
+    if (node == null) return null;
+    while (node.left != null) node = node.left;
+    return node;
 }

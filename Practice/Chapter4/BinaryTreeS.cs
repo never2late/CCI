@@ -207,17 +207,8 @@ namespace Practice
 
 		public BinaryTreeNodeS<T> GetFirstCommonParent(BinaryTreeNodeS<T> n1, BinaryTreeNodeS<T> n2)
 		{
-			if (Root == null) return null;
+			if (Root == null || n1 == null || n2 == null) return null;
 			if (Root.Value.Equals(n1.Value) || Root.Value.Equals(n2.Value)) return null;
-
-			if (n1.HasChild(n2))
-			{
-				return GetParentOf(n1);
-			}
-			else if (n2.HasChild(n1))
-			{
-				return GetParentOf(n2);
-			}
 
 			return GetFirstCommonParent(Root, n1, n2);
 		}
@@ -226,16 +217,23 @@ namespace Practice
 		{
 			if (cur == null) return null;
 
-			if (Contains(cur.Left, n1) && Contains(cur.Left, n2))
+            if ((Contains(cur.Left, n1) && Contains(cur.Right, n2)) ||
+                (Contains(cur.Left, n2) && Contains(cur.Right, n1)))
+            {
+                return cur;
+            }
+			else if (Contains(cur.Left, n1) && Contains(cur.Left, n2))
 			{
-				return GetFirstCommonParent(cur.Left, n1, n2);
+                if (cur.Left == n1 || cur.Left == n2) return cur;
+				else return GetFirstCommonParent(cur.Left, n1, n2);
 			}
 			else if (Contains(cur.Right, n1) && Contains(cur.Right, n2))
 			{
-				return GetFirstCommonParent(cur.Right, n1, n2);
+                if (cur.Right == n1 || cur.Right == n2) return cur;
+				else return GetFirstCommonParent(cur.Right, n1, n2);
 			}
 
-			return cur;
+			return null;
 		}
 
 		public BinaryTreeNodeS<T> GetParentOf(BinaryTreeNodeS<T> node)
