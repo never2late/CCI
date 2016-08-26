@@ -299,7 +299,6 @@ namespace Practice
 				//}
 
 				//tree.Root = tree.Question3(array);
-
 				tree.Insert(15);
 				tree.Insert(0);
 				tree.Insert(30);
@@ -313,24 +312,58 @@ namespace Practice
 				tree.Insert(10);
 				tree.Insert(-1);
 				tree.Insert(-2);
-				var dict = tree.Question4(tree);
-				if (option == 1) dict = tree.Question4DFS(tree);
-
-				tree.PrintLevelOrder();
 				var sb = new StringBuilder();
 
-				for (var i = 0; i < dict.Count; i++)
+				if (option == 0 || option == 1)
 				{
-					sb.Append("depth " + i + " : ");
-					var depthList = dict[i];
-					foreach (var depthNode in depthList)
-					{
-						sb.Append(depthNode.Value + ", ");
-					}
-					sb.Append("\n");
-				}
+					var dict = tree.Question4(tree);
+					if (option == 1) dict = tree.Question4DFS(tree);
 
-				PrintLn(sb.ToString());
+					tree.PrintLevelOrder();
+
+					for (var i = 0; i < dict.Count; i++)
+					{
+						sb.Append("depth " + i + " : ");
+						var depthList = dict[i];
+						foreach (var depthNode in depthList)
+						{
+							sb.Append(depthNode.Value + ", ");
+						}
+						sb.Append("\n");
+					}
+
+					PrintLn(sb.ToString());
+				}
+				else if (option == 2)
+				{
+					var result = tree.GetDepthList();
+					for (int i = 0; i < result.Count; i++)
+					{
+						sb.Append("depth " + i + " : ");
+						foreach (var node in result[i])
+						{
+							sb.Append(node.Value + " - ");
+						}
+						sb.Append("\n");
+					}
+
+					PrintLn(sb);
+				}
+				else if (option == 3)
+				{
+					var result = tree.GetDepthList2();
+					for (int i = 0; i < result.Count; i++)
+					{
+						sb.Append("depth " + i + " : ");
+						foreach (var node in result[i])
+						{
+							sb.Append(node.Value + " - ");
+						}
+						sb.Append("\n");
+					}
+
+					PrintLn(sb);
+				}
 			}
 
 			else if (question == 5)

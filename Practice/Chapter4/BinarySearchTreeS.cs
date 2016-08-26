@@ -257,7 +257,72 @@ namespace Practice
             Question4DFS(node.Right, dict, depth + 1);
         }
 
-        public BinaryTreeNodeS<int> Question5(BinaryTreeNodeS<int> node)
+		public List<List<BinaryTreeNodeS<T>>> GetDepthList()
+		{
+			if (Root == null) return null;
+
+			var result = new List<List<BinaryTreeNodeS<T>>>();
+
+			GetDepthList(Root, result, 0);
+
+			return result;
+		}
+
+		private void GetDepthList(BinaryTreeNodeS<T> node, List<List<BinaryTreeNodeS<T>>> result, int depth)
+		{
+			if (node == null) return;
+			if (result.Count == depth)
+			{
+				result.Add(new List<BinaryTreeNodeS<T>> ());
+			}
+
+			result[depth].Add(node);
+			GetDepthList(node.Left, result, depth + 1);
+			GetDepthList(node.Right, result, depth + 1);
+		}
+
+		public List<List<BinaryTreeNodeS<T>>> GetDepthList2()
+		{
+			if (Root == null) return null;
+
+			var result = new List<List<BinaryTreeNodeS<T>>>();
+			var q = new Queue<NodeD>();
+			var r = new NodeD(Root, 0);
+			q.Enqueue(r);
+
+			while (q.Count > 0)
+			{
+				var node = q.Dequeue();
+				var n = node.node;
+				var depth = node.depth;
+
+				if (result.Count == depth)
+				{
+					result.Add(new List<BinaryTreeNodeS<T>>());
+				}
+
+				result[depth].Add(n);
+
+				if (n.Left != null) q.Enqueue(new NodeD(n.Left, depth + 1));
+				if (n.Right != null) q.Enqueue(new NodeD(n.Right, depth + 1));
+			}
+
+			return result;
+		}
+
+		public class NodeD
+		{
+			public BinaryTreeNodeS<T> node;
+			public int depth;
+
+			public NodeD(BinaryTreeNodeS<T> node, int depth)
+			{
+				this.node = node;
+				this.depth = depth;
+			}
+		}
+
+		public BinaryTreeNodeS<int> Question5(BinaryTreeNodeS<int> node)
         {
             if (node == null) return null;
             if (node.Parent == null || node.Right != null) return LeftMost(node.Right);
@@ -314,8 +379,8 @@ namespace Practice
                 }
                 return node;
             }
-            if (node.Parent.Right == node) return node.Parent;
-            return null;
-        }
+
+			return node.Parent;
+		}
 	}
 }
