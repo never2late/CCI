@@ -625,28 +625,3 @@ namespace Practice
 	}
 }
 
-public Node getInOrderSuccessor(Node node)
-{
-    if (node == null) return null;
-    if (node.parent == null || node.right != null)
-    {
-        return getLeftMost(node.right);
-    }
-
-    var cur = node;
-    while (node.parent != null)
-    {
-        node = node.parent;
-        if (node.left == cur) return node;
-        cur = node;
-    }
-
-    return null;
-}
-
-private Node getLeftMost(Node node)
-{
-    if (node == null) return null;
-    while (node.left != null) node = node.left;
-    return node;
-}
