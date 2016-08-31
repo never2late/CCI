@@ -60,15 +60,17 @@ namespace Practice
 		public static void TestSolution()
 		{
 			var solution = new Solution();
-			var param = new int[5, 2] { { 0, 1 }, { 0, 2 }, { 0, 3 }, { 3, 4 }, { 4, 5 } };
-			solution.FindMinHeightTrees(6, param);
+            var param = new List<Interval>();
+            param.Add(new Interval(1, 4));
+            param.Add(new Interval(0, 4));
+            solution.Merge(param);
 		}
 
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 
-			Test(4, 6, 0);
+			Test(9, 2, 0);
 			//TestSolution();
 
 			Console.WriteLine("\n\n================ Program Finish ================");

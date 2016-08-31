@@ -128,25 +128,23 @@ namespace Practice
 			}
 
 			var numString = sbNum.ToString();
+            int cnt = 0;
 
-			while (true)
+			while (dec != 0.0)
 			{
-				if (sbDec.Length > 32) return "ERROR";
-				dec = dec * 2;
-				if (dec > 1.0f)
-				{
-					sbDec.Append('1');
-					dec -= 1.0f;
-				}
-				else if (dec == 1.0f)
-				{
-					sbDec.Append('1');
-					break;
-				}
-				else
-				{
-					sbDec.Append('0');
-				}
+                if (cnt > 32) return "ERROR";
+
+                dec *= 2;
+                if (dec >= 1.0)
+                {
+                    sbDec.Append("1");
+                    dec -= 1.0;
+                }
+                else
+                {
+                    sbDec.Append("0");
+                }
+                cnt++;
 			}
 
 			decString = sbDec.ToString();
