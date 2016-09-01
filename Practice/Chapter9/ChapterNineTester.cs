@@ -9,6 +9,8 @@ namespace Practice
 {
     public class ChapterNineTester : Util
     {
+        
+
         public void test(int q, int o)
         {
             if (q == 0)

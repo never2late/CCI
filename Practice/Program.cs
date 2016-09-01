@@ -60,18 +60,16 @@ namespace Practice
 		public static void TestSolution()
 		{
 			var solution = new Solution();
-            var param = new List<Interval>();
-            param.Add(new Interval(1, 4));
-            param.Add(new Interval(0, 4));
-            solution.Merge(param);
+            uint param = 256;
+            solution.reverseBits(param);
 		}
 
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 
-			Test(9, 2, 0);
-			//TestSolution();
+			//Test(9, 2, 0);
+			TestSolution();
 
 			Console.WriteLine("\n\n================ Program Finish ================");
 
