@@ -540,39 +540,47 @@ namespace Practice
 				var node2 = new BinaryTreeNodeS<int>(2);
 				var node3 = new BinaryTreeNodeS<int>(3);
 				var node4 = new BinaryTreeNodeS<int>(4);
-				var node5 = new BinaryTreeNodeS<int>(5);
-				var node6 = new BinaryTreeNodeS<int>(6);
-				var node7 = new BinaryTreeNodeS<int>(7);
-				var node8 = new BinaryTreeNodeS<int>(8);
-				var node9 = new BinaryTreeNodeS<int>(9);
-				var node10 = new BinaryTreeNodeS<int>(10);
-				var node11 = new BinaryTreeNodeS<int>(11);
-				var node12 = new BinaryTreeNodeS<int>(12);
-				var node13 = new BinaryTreeNodeS<int>(13);
-				var node14 = new BinaryTreeNodeS<int>(14);
-				var node15 = new BinaryTreeNodeS<int>(15);
+                //var node5 = new BinaryTreeNodeS<int>(5);
+                //var node6 = new BinaryTreeNodeS<int>(6);
+                //var node7 = new BinaryTreeNodeS<int>(7);
+                //var node8 = new BinaryTreeNodeS<int>(8);
+                //var node9 = new BinaryTreeNodeS<int>(9);
+                //var node10 = new BinaryTreeNodeS<int>(10);
+                //var node11 = new BinaryTreeNodeS<int>(11);
+                //var node12 = new BinaryTreeNodeS<int>(12);
+                //var node13 = new BinaryTreeNodeS<int>(13);
+                //var node14 = new BinaryTreeNodeS<int>(14);
+                //var node15 = new BinaryTreeNodeS<int>(15);
 
-				node1.Left = node2;
+                var node10 = new BinaryTreeNodeS<int>(1);
+                var node11 = new BinaryTreeNodeS<int>(2);
+                var node12 = new BinaryTreeNodeS<int>(3);
+
+                node1.Left = node2;
 				node1.Right = node3;
 				node2.Left = node4;
-				node2.Right = node5;
-				node3.Left = node6;
-				node3.Right = node7;
-				node4.Left = node8;
-				node4.Right = node9;
-				node5.Left = node10;
-				node5.Right = node11;
-				node6.Left = node12;
-				node6.Right = node13;
-				node7.Left = node14;
-				node7.Right = node15;
+                //node2.Right = node5;
+                //node3.Left = node6;
+                //node3.Right = node7;
+                //node4.Left = node8;
+                //node4.Right = node9;
+                //node5.Left = node10;
+                //node5.Right = node11;
+                //node6.Left = node12;
+                //node6.Right = node13;
+                //node7.Left = node14;
+                //node7.Right = node15;
 
-				tree.Root = node1;
+                //tree.Root = node1;
 
-				var subTree = new BinaryTreeS<int>();
-				subTree.Root = node7;
+                var subTree = new BinaryTreeS<int>();
+                //subTree.Root = node7;
 
-				var result = subTree.IsSubTreeOf(tree);
+                node10.Left = node11;
+                node10.Right = node12;
+
+                //var result = subTree.IsSubTreeOf(tree);
+                var result = subTree.isSub(node1, node10);
 
 				PrintLn("T2 is a subTree of T1 : " + result);
 			}

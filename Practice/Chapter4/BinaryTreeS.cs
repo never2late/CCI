@@ -302,7 +302,36 @@ namespace Practice
 			return true;
 		}
 
-		private BinaryTreeNodeS<T> GetNode(T val)
+        public bool isSub(BinaryTreeNodeS<int> t1, BinaryTreeNodeS<int> t2)
+        {
+            if (t2 == null) return true;//empty tree is always a subtree
+
+            return isSubTree(t1, t2);
+        }
+
+        private bool isSubTree(BinaryTreeNodeS<int> n1, BinaryTreeNodeS<int> n2)
+        {
+            if (n1 == null) return false;
+
+            if (n1.Value == n2.Value)
+            {
+                if (isMatch(n1, n2)) return true;
+            }
+
+            return isSubTree(n1.Left, n2) || isSubTree(n1.Right, n2);
+        }
+
+        private bool isMatch(BinaryTreeNodeS<int> n1, BinaryTreeNodeS<int> n2)
+        {
+            if (n2 == null && n1 == null) return true;
+            if (n2 != null && n1 == null) return false;
+            if (n2 == null && n1 != null) return true;
+            if (n1.Value != n2.Value) return false;
+
+            return isMatch(n1.Left, n2.Left) && isMatch(n1.Right, n2.Right);
+        }
+
+        private BinaryTreeNodeS<T> GetNode(T val)
 		{
 			return GetNode(Root, val);
 		}
@@ -319,7 +348,7 @@ namespace Practice
 		}
 
 		public List<BinaryTreeNodeS<T>> ToLevelOrderList()
-		{
+		{ 
 			if (Root == null) return null;
 			
 			var list = new List<BinaryTreeNodeS<T>>();
@@ -342,18 +371,27 @@ namespace Practice
 		{
 			if (Root == null) return;
 
-			var q = new Queue<BinaryTreeNodeS<T>>();
-			q.Enqueue(Root);
+            var q = new Queue<BinaryTreeNodeS<T>>();
+            q.Enqueue(Root);
 
-			while (q.Count > 0)
-			{
-				var node = q.Dequeue();
-				if (node.Left != null) q.Enqueue(node.Left);
-				if (node.Right != null) q.Enqueue(node.Right);
-				
-				PrintPathsThatSumTo(node, 0, n, "");
-			}
-		}
+            while (q.Count > 0)
+            {
+                var node = q.Dequeue();
+                if (node.Left != null) q.Enqueue(node.Left);
+                if (node.Right != null) q.Enqueue(node.Right);
+
+                PrintPathsThatSumTo(node, 0, n, "");
+            }
+            //PrintPathsThatSumTo(Root, n);
+        }
+
+        private void PrintPathsThatSumTo(BinaryTreeNodeS<T> node, int n)
+        {
+            if (node == null) return;
+            PrintPathsThatSumTo(node, 0, n, "");
+            PrintPathsThatSumTo(node.Left, n);
+            PrintPathsThatSumTo(node.Right, n);
+        }
 
 		private void PrintPathsThatSumTo(BinaryTreeNodeS<T> node, int cur, int n, string str)
 		{

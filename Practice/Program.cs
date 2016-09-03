@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Practice.Solution;
 
 namespace Practice
 {
@@ -60,18 +61,22 @@ namespace Practice
 		public static void TestSolution()
 		{
 			var solution = new Solution();
-            uint param = 256;
-            solution.reverseBits(param);
+            var param = new char[3, 4] {
+                { 'A', 'A', 'A', 'A' },
+                { 'A', 'A', 'A', 'A' },
+                { 'A', 'A', 'A', 'A' }
+            };
+            solution.Exist(param, "AAAAAAAAAAAA");
 		}
 
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 
-			//Test(9, 2, 0);
-			TestSolution();
+            //Test(4, 8, 0);
+            TestSolution();
 
-			Console.WriteLine("\n\n================ Program Finish ================");
+            Console.WriteLine("\n\n================ Program Finish ================");
 
 			Console.ReadKey();
 		}
