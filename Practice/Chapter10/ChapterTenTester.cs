@@ -265,7 +265,7 @@ namespace Practice
 		}
 	}
 
-	public class Line
+    public class Line
 	{
         public Point p1 { get; set; }
         public Point p2 { get; set; }
@@ -306,3 +306,4 @@ namespace Practice
         
     }
 }
+
