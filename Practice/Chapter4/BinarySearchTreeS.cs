@@ -327,12 +327,10 @@ namespace Practice
             if (node == null) return null;
             if (node.Parent == null || node.Right != null) return LeftMost(node.Right);
 
-            var cur = node;
             while (node.Parent != null)
             {
+                if (node.Parent.Left == node) return node.Parent;
                 node = node.Parent;
-                if (node.Left == cur) return node;
-                cur = node;
             }
 
             return null;
@@ -368,19 +366,15 @@ namespace Practice
         {
             if (node == null) return null;
             if (node.Parent == null) return null;
-            if (node.Parent.Left == node)
+            if (node.Parent.Right == node) return node.Parent;
+            if (node.Parent.Right == null) return node.Parent;
+
+            node = node.Parent.Right;
+            while (node.Left != null || node.Right != null)
             {
-                if (node.Parent.Right == null) return node.Parent;
-
-                node = node.Parent.Right;
-                while (node.Left != null || node.Right != null)
-                {
-                    node = (node.Left != null) ? node.Left : node.Right;
-                }
-                return node;
+                node = (node.Left != null) ? node.Left : node.Right;
             }
-
-			return node.Parent;
-		}
-	}
+            return node;
+        }
+    }
 }

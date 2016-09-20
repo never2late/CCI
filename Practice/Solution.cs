@@ -8,80 +8,44 @@ namespace Practice
 {
     public class Solution
     {
-        public bool Exist(char[,] board, string word)
+        List<string> result = new List<string>();
+        public List<string> Combinations(int num)
         {
-            if (board == null || board.GetLength(0) == 0 || board.GetLength(1) == 0) return false;
-            if (string.IsNullOrEmpty(word) == true) return true;
+            var bits = new int[8];
+            Combinations(num, 0, 0, bits);
+            return result;
+        }
 
-            int imax = board.GetLength(0), jmax = board.GetLength(1);
-            if (word.Length == 1)
+        private void Combinations(int num, int cnt, int i, int[] bits)
+        {
+            if (num == cnt)
             {
-                for (int i = 0; i < imax; i++)
-                {
-                    for (int j = 0; j < jmax; j++)
-                    {
-                        if (board[i, j] == word.ElementAt(0)) return true;
-                    }
-                }
+                var sb = new StringBuilder();
+                foreach (var bit in bits) sb.Append(bit + "");
+                result.Add(sb.ToString());
+                return;
             }
-            var nodes = new Node[imax, jmax];
-            for (int i = 0; i < imax; i++)
-            {
-                for (int j = 0; j < jmax; j++)
-                {
-                    nodes[i, j] = new Node(board[i, j]);
-                }
-            }
-            var vertices = new Dictionary<Node, List<Node>>();
-            for (int i = 0; i < imax; i++)
-            {
-                for (int j = 0; j < jmax; j++)
-                {
-                    var vertex = nodes[i, j];
-                    vertices.Add(vertex, new List<Node>());
-                    if (j + 1 < jmax) vertices[vertex].Add(nodes[i, j + 1]);
-                    if (i + 1 < imax) vertices[vertex].Add(nodes[i + 1, j]);
-                    if (j - 1 >= 0) vertices[vertex].Add(nodes[i, j - 1]);
-                    if (i - 1 >= 0) vertices[vertex].Add(nodes[i - 1, j]);
-                }
-            }
-           
-            var correctKeyList = new List<Node>();
-            foreach (var key in vertices.Keys)
-            {
-                if (key.vertex == word.ElementAt(0)) correctKeyList.Add(key);
-            }
-            foreach (var key in correctKeyList)
-            {
-                var hs = new HashSet<Node>();
-                var q = new Queue<Node>();
-                key.index = 1;
-                q.Enqueue(key);
-                hs.Add(key);
-                while (q.Count > 0)
-                {
-                    var vertex = q.Dequeue();
-                    var found = false;
-                    foreach (var v in vertices[vertex])
-                    {
-                        if (hs.Contains(v) == true) continue;
-                        if (v.vertex == word.ElementAt(vertex.index))
-                        {
-                            if (vertex.index == word.Length - 1) return true;
-                            found = true;
-                            v.index = vertex.index + 1;
-                            hs.Add(v);
-                            q.Enqueue(v);
-                        }
-                    }
-                    if (found == false)
-                    {
-                        hs.Remove(vertex);
-                    }
-                }
-            }
+            if (i >= bits.Length) return;
 
-            return false;
+            bits[i] = 1;
+            Combinations(num, cnt + 1, i + 1, bits);
+            bits[i] = 0;
+            Combinations(num, cnt, i + 1, bits);
+        }
+
+        public class TreeNode
+        {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int x) { val = x; }
+        }
+
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+            public ListNode(int x) { val = x; }
         }
 
         private class Node

@@ -61,24 +61,25 @@ namespace Practice
 		public static void TestSolution()
 		{
 			var solution = new Solution();
-            var param = new char[3, 4] {
-                { 'A', 'A', 'A', 'A' },
-                { 'A', 'A', 'A', 'A' },
-                { 'A', 'A', 'A', 'A' }
-            };
-            solution.Exist(param, "AAAAAAAAAAAA");
+            int param = 3;
+            var result = solution.Combinations(param);
+            int i = 1;
+            foreach (var str in result)
+            {
+                Console.WriteLine((i++) + ". " + str);
+            }
 		}
 
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 
-            //Test(4, 8, 0);
+            //Test(4, 5, 2);
             TestSolution();
 
             Console.WriteLine("\n\n================ Program Finish ================");
 
 			Console.ReadKey();
 		}
-	}
+    }
 }
