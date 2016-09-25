@@ -8,29 +8,41 @@ namespace Practice
 {
     public class Solution
     {
-        List<string> result = new List<string>();
-        public List<string> Combinations(int num)
+        public int IntegerBreak(int n)
         {
-            var bits = new int[8];
-            Combinations(num, 0, 0, bits);
+            if (n == 2) return 1;
+
+            var result = Int32.MinValue;
+
+            for (int i = 1; i <= n >> 1; i++)
+            {
+                for (int j = 2; i + j <= n; j++)
+                {
+                    result = Math.Max(i * integerBreak(n, i, j), result);
+                }
+            }
+            
             return result;
         }
 
-        private void Combinations(int num, int cnt, int i, int[] bits)
+        private int integerBreak(int n, int sum, int cur)
         {
-            if (num == cnt)
-            {
-                var sb = new StringBuilder();
-                foreach (var bit in bits) sb.Append(bit + "");
-                result.Add(sb.ToString());
-                return;
-            }
-            if (i >= bits.Length) return;
+            if (sum + cur >= n) return n - sum;
+            //5
+            sum += cur;
+            //2 * 2 * 1
+            return cur * integerBreak(n, sum, cur);
+        }
 
-            bits[i] = 1;
-            Combinations(num, cnt + 1, i + 1, bits);
-            bits[i] = 0;
-            Combinations(num, cnt, i + 1, bits);
+        public bool IsValidBST(TreeNode root) {
+            return IsValidBST(root, Int32.MinValue, Int32.MaxValue);
+        }
+
+        private bool IsValidBST(TreeNode node, int min, int max) {
+            if (node == null) return true;
+            if (min >= node.val || node.val >= max) return false;
+
+            return IsValidBST(node.left, min, node.val) && IsValidBST(node.right, node.val, max);
         }
 
         public class TreeNode

@@ -61,13 +61,8 @@ namespace Practice
 		public static void TestSolution()
 		{
 			var solution = new Solution();
-            int param = 3;
-            var result = solution.Combinations(param);
-            int i = 1;
-            foreach (var str in result)
-            {
-                Console.WriteLine((i++) + ". " + str);
-            }
+            var param = 5;
+            var result = solution.IntegerBreak(param);
 		}
 
 		public static void Main(string[] args)
