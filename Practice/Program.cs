@@ -62,14 +62,14 @@ namespace Practice
 		{
 			var solution = new Solution();
             var param = 5;
-            var result = solution.IntegerBreak(param);
+            var result = solution.GetPermutation(3, 2);
 		}
 
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 
-            //Test(4, 5, 2);
+            //Test(8, 4, 2);
             TestSolution();
 
             Console.WriteLine("\n\n================ Program Finish ================");

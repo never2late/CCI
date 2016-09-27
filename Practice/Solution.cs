@@ -8,30 +8,34 @@ namespace Practice
 {
     public class Solution
     {
-        public int IntegerBreak(int n)
+        public string GetPermutation(int n, int k)
         {
-            if (n == 2) return 1;
+            var str = "";
+            for (int i = 1; i <= n; i++) str += i;
 
-            var result = Int32.MinValue;
+            var result = "";
+            var s = str;
+            var p = factorial(n);
+            --k;
 
-            for (int i = 1; i <= n >> 1; i++)
+            for (int i = n; i > 0; i--)
             {
-                for (int j = 2; i + j <= n; j++)
-                {
-                    result = Math.Max(i * integerBreak(n, i, j), result);
-                }
+                p /= i;
+                var c = k / p;
+                var t = s.ElementAt(c) + s.Substring(0, c) + s.Substring(c + 1);
+                s = t.Substring(1);
+                result += t.Substring(0, 1);
+                k %= p;
             }
-            
+
             return result;
         }
 
-        private int integerBreak(int n, int sum, int cur)
+        private int factorial(int n)
         {
-            if (sum + cur >= n) return n - sum;
-            //5
-            sum += cur;
-            //2 * 2 * 1
-            return cur * integerBreak(n, sum, cur);
+            for (int i = n - 1; i >= 2; i--) n *= i;
+
+            return n;
         }
 
         public bool IsValidBST(TreeNode root) {

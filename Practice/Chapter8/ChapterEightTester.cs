@@ -90,9 +90,9 @@ namespace Practice
 
                 PrintLn("Permutation of " + str + ", total of : " + list.Count);
 
-                foreach (var permutation in list)
+                for (int i = 0; i < list.Count; i++)
                 {
-                    PrintLn(permutation);
+                    PrintLn((i + 1) + ". " + list[i]);
                 }
             }
             else if (q == 5)
@@ -279,45 +279,31 @@ namespace Practice
 
 		public List<string> QuestionFour(string s)
 		{
-			if (string.IsNullOrEmpty(s) == true) return null;
-			
 			var list = new List<string>();
-
-			if (s.Length == 1)
-			{
-				list.Add(s);
-				return list;
-			}
-			if (s.Length == 2)
-			{
-				list.Add("" + s.ElementAt(0) + s.ElementAt(1));
-				list.Add("" + s.ElementAt(1) + s.ElementAt(0));
-				return list;
-			}
-
 			GetPermutation("", s, list);
-
 			return list;
 		}
-
-		private void GetPermutation(string prev, string s, List<string> list)
+        /* 
+            ABCD        ABC
+            ABDC        ACB
+            ACBD        BAC
+            ACDB        BCA
+            ADBC        CAB
+            ADCB        CBA
+            BACD 
+        */
+		private void GetPermutation(string left, string right, List<string> list)
 		{
-			for (int i = 0; i < s.Length; i++)
-			{
-				char c = s.ElementAt(i);
-				var before = s.Substring(0, i);
-				var after = (i + 1 < s.Length) ? s.Substring(i + 1, s.Length - i - 1) : "";
-				var comb = before + after;
+            if (right.Length == 0)
+            {
+                list.Add(left);
+                return;
+            }
 
-				if (comb.Length == 2)
-				{
-					list.Add(prev + c + comb.ElementAt(0) + comb.ElementAt(1));
-					list.Add(prev + c + comb.ElementAt(1) + comb.ElementAt(0));
-				}
-				else
-				{
-					GetPermutation(prev + c, comb, list);
-				}
+			for (int i = 0; i < right.Length; i++)
+			{
+                var str = right.ElementAt(i) + right.Substring(0, i) + right.Substring(i + 1);
+                GetPermutation(left + str.ElementAt(0), str.Substring(1), list);
 			}
 		}
 
