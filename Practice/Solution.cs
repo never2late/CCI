@@ -17,7 +17,8 @@ namespace Practice
             var s = str;
             var p = factorial(n);
             --k;
-
+            var a = new int[5, 5];
+            
             for (int i = n; i > 0; i--)
             {
                 p /= i;

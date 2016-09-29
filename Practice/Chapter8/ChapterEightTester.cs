@@ -454,14 +454,14 @@ namespace Practice
                 return;
             } 
             if (x >= 8 || y >= 8) return;
-
+            
             if (canPlaceQueen(chessBoard, x, y) == true)
             {
                 chessBoard[y, x] = 1;
                 var copy = new int[8, 8];
                 Array.Copy(chessBoard, copy, chessBoard.Length);
                 cnt++;
-
+                
                 placeAllQueens(copy, 0, y + 1, cnt, result);
                 chessBoard[y, x] = 0;
                 cnt--;
