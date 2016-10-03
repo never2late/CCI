@@ -35,7 +35,7 @@ namespace Practice
         private int factorial(int n)
         {
             for (int i = n - 1; i >= 2; i--) n *= i;
-
+            
             return n;
         }
 
@@ -49,6 +49,12 @@ namespace Practice
 
             return IsValidBST(node.left, min, node.val) && IsValidBST(node.right, node.val, max);
         }
+
+        public class UndirectedGraphNode {
+            public int label;
+            public IList<UndirectedGraphNode> neighbors;
+            public UndirectedGraphNode(int x) { label = x; neighbors = new List<UndirectedGraphNode>(); }
+        };
 
         public class TreeNode
         {

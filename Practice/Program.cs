@@ -65,7 +65,7 @@ namespace Practice
             var result = solution.GetPermutation(3, 2);
 		}
 
-		public static void Main(string[] args)
+        public static void Main(string[] args)
 		{
 			Console.WriteLine("================ Program Start ================\n\n");
 
