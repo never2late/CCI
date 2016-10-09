@@ -8,46 +8,49 @@ namespace Practice
 {
     public class Solution
     {
-        public string GetPermutation(int n, int k)
+        List<TreeNode> result = new List<TreeNode>();
+
+        public List<TreeNode> GenerateTrees(int n)
         {
-            var str = "";
-            for (int i = 1; i <= n; i++) str += i;
-
-            var result = "";
-            var s = str;
-            var p = factorial(n);
-            --k;
-            var a = new int[5, 5];
-            
-            for (int i = n; i > 0; i--)
+            for (int i = 1; i <= n; i++)
             {
-                p /= i;
-                var c = k / p;
-                var t = s.ElementAt(c) + s.Substring(0, c) + s.Substring(c + 1);
-                s = t.Substring(1);
-                result += t.Substring(0, 1);
-                k %= p;
+                GenerateTrees(i, 1, n, n - 1, null);
             }
-
             return result;
         }
-
-        private int factorial(int n)
+        
+        private TreeNode GenerateTrees(int n, int min, int max, int cnt, TreeNode root)
         {
-            for (int i = n - 1; i >= 2; i--) n *= i;
-            
-            return n;
+            var node = new TreeNode(n);
+            if (root == null) root = node;
+
+            for (int i = min; i < n; i++)
+            {
+                node.left = GenerateTrees(i, min, n - 1, --cnt, root);
+            }
+
+            for (int i = n + 1; i <= max; i++)
+            {
+                node.right = GenerateTrees(i, n + 1, max, --cnt, root);
+            }
+
+            if (cnt == 0)
+            {
+                result.Add(copy(root));
+            }
+
+            return node;
         }
 
-        public bool IsValidBST(TreeNode root) {
-            return IsValidBST(root, Int32.MinValue, Int32.MaxValue);
-        }
+        private TreeNode copy(TreeNode root)
+        {
+            if (root == null) return null;
 
-        private bool IsValidBST(TreeNode node, int min, int max) {
-            if (node == null) return true;
-            if (min >= node.val || node.val >= max) return false;
+            var node = new TreeNode(root.val);
+            node.left = copy(root.left);
+            node.right = copy(root.right);
 
-            return IsValidBST(node.left, min, node.val) && IsValidBST(node.right, node.val, max);
+            return node;
         }
 
         public class UndirectedGraphNode {

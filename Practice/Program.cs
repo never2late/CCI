@@ -61,8 +61,8 @@ namespace Practice
 		public static void TestSolution()
 		{
 			var solution = new Solution();
-            var param = 5;
-            var result = solution.GetPermutation(3, 2);
+            var param = 3;
+            var result = solution.GenerateTrees(param);
 		}
 
         public static void Main(string[] args)
@@ -73,7 +73,7 @@ namespace Practice
             TestSolution();
 
             Console.WriteLine("\n\n================ Program Finish ================");
-
+            
 			Console.ReadKey();
 		}
     }
