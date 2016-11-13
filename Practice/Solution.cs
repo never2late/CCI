@@ -3,54 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Practice.Solution;
 
 namespace Practice
 {
     public class Solution
     {
-        List<TreeNode> result = new List<TreeNode>();
-
-        public List<TreeNode> GenerateTrees(int n)
+        public int kthSmallest(int[] arr, int k)
         {
-            for (int i = 1; i <= n; i++)
-            {
-                GenerateTrees(i, 1, n, n - 1, null);
-            }
-            return result;
+            return kthSmallest(arr, 0, arr.Length - 1, k);
         }
-        
-        private TreeNode GenerateTrees(int n, int min, int max, int cnt, TreeNode root)
+        private int kthSmallest(int[] arr, int s, int e, int k)
         {
-            var node = new TreeNode(n);
-            if (root == null) root = node;
+            if (s >= e) return arr[s];
 
-            for (int i = min; i < n; i++)
+            int p = ptt(arr, s, e);
+            if (p == k - 1) return arr[p];
+            else if (k - 1 < p) return kthSmallest(arr, s, p - 1, k);
+            else return kthSmallest(arr, p + 1, e, k);
+        }
+        private int ptt(int[] arr, int s, int e)
+        {
+            int p = e;
+            int piv = arr[p];
+            for (int i = s; i < p; i++)
             {
-                node.left = GenerateTrees(i, min, n - 1, --cnt, root);
+                if (arr[i] > piv)
+                {
+                    swap(arr, i, p - 1);
+                    swap(arr, p, p - 1);
+                    i--;
+                    p--;
+                }
             }
-
-            for (int i = n + 1; i <= max; i++)
-            {
-                node.right = GenerateTrees(i, n + 1, max, --cnt, root);
-            }
-
-            if (cnt == 0)
-            {
-                result.Add(copy(root));
-            }
-
-            return node;
+            return p;
+        }
+        private void swap(int[] arr, int a, int b)
+        {
+            var tmp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = tmp;
         }
 
-        private TreeNode copy(TreeNode root)
+        public void qsort(int[] n)
         {
-            if (root == null) return null;
+            qsort(n, 0, n.Length - 1);
+        }
+        private void qsort(int[] n, int s, int e)
+        {
+            if (s >= e) return;
 
-            var node = new TreeNode(root.val);
-            node.left = copy(root.left);
-            node.right = copy(root.right);
+            int p = ptt(n, s, e);
+            qsort(n, s, p - 1);
+            qsort(n, p + 1, e);
+        }
 
-            return node;
+        public String toString(int[] n)
+        {
+            var sb = new StringBuilder();
+            foreach (var i in n)
+            {
+                sb.Append(i + ", ");
+            }
+            sb.Remove(sb.Length - 2, 2);
+            return sb.ToString();
         }
 
         public class UndirectedGraphNode {
@@ -82,6 +98,49 @@ namespace Practice
             {
                 vertex = c;
             }
+        }
+    }
+
+
+    
+    public static class TreeUtil
+    {
+        public static TreeNode GetTree(Nullable<int>[] param)
+        {
+            var root = new TreeNode((int)param[0]);
+            var q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            var i = 0;
+            
+            while (q.Count > 0 && i < param.Length)
+            {
+                var node = q.Dequeue();
+                if (node == null)
+                {
+                    i += 2;
+                    q.Enqueue(null);
+                    q.Enqueue(null);
+                    continue;
+                }
+                node.left = (++i < param.Length && param[i] != null) ? new TreeNode((int)param[i]) : null;
+                node.right = (++i < param.Length && param[i] != null) ? new TreeNode((int)param[i]) : null;
+                q.Enqueue(node.left);
+                q.Enqueue(node.right);
+            }
+
+            return root;
+        }
+        private static TreeNode GetTree(Nullable<int>[] param, int l, int r)
+        {
+            if (l > r) return null;
+
+            var m = l + ((r - l) >> 1);
+            if (param[m] == null) return null;
+
+            var node = new TreeNode((int)param[m]);
+            node.left = GetTree(param, l, m - 1);
+            node.right = GetTree(param, m + 1, r);
+            return node;
         }
     }
 }

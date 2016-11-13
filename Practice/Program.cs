@@ -7,10 +7,10 @@ using static Practice.Solution;
 
 namespace Practice
 {
-	public class Program
-	{
-		private static void Test(int chapter, int question = 0, int option = 0)
-		{
+    public class Program
+    {
+        private static void Test(int chapter, int question = 0, int option = 0)
+        {
             if (chapter == 1)
             {
                 var tester = new ChapterOneTester();
@@ -56,25 +56,34 @@ namespace Practice
                 var tester = new ChapterTwelveTester();
                 tester.test(question, option);
             }
-		}
+        }
+        //O(2n) --> O(n) [n + n/2 + n/4 + ... = 2n]
+        public static void TestSolution()
+        {
+            var solution = new Solution();
+            var param = new int[] { 0, 9, 7, 2, 3, 8, 7, 1, 0, 4, 2, 7, 3, 8, 9, 2, 4 };
 
-		public static void TestSolution()
-		{
-			var solution = new Solution();
-            var param = 3;
-            var result = solution.GenerateTrees(param);
-		}
+            var k = 1;
+            var a = solution.kthSmallest(param, k);
+            solution.qsort(param);
+            var sorted = solution.toString(param);
+
+            Console.WriteLine(sorted);
+            Console.WriteLine("kth: " + k + ", num: " + a);
+        }
 
         public static void Main(string[] args)
-		{
-			Console.WriteLine("================ Program Start ================\n\n");
+        {
+            Console.WriteLine("================ Program Start ================\n\n");
 
             //Test(8, 4, 2);
             TestSolution();
 
             Console.WriteLine("\n\n================ Program Finish ================");
-            
-			Console.ReadKey();
-		}
+
+            Console.ReadKey();
+        }
     }
 }
+
+
